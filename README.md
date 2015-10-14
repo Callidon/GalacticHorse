@@ -17,8 +17,8 @@ Un moteur de recherche enrichi dédié au handicap
 :          .\MX:!!!!!M8X!   XRMi         '  \ ! !>' ':    
 :          .M$!!! ~!!HMRM M$RMMMM:             ~'!	 :    
 :          .$M!!!   -=:^~MRMMMMMM!!:            )(>  :    
-:          4RM!!   @  XM$MMMMMMM!\~!:				         :    
-:         :$MMM!   \!~\M$RMMMMMMMX >~MH   !!..		   :    
+:          4RM!!   @  XM$MMMMMMM!\~!:                :    
+:         :$MMM!   \!~\M$RMMMMMMMX >~MH   !!..       :    
 :         :MMMM!:!!!XM8$$MMMMMMMMX>` !$8x  !!!!`:!   :    
 :        F$8$MMX!!!!MMMMMMMMMMMMM!> ! !$$M  !!!!.!!> :    
 :       F$$$$MMM!!!!MMMMMMMMMMMM!!~ :  !R$M  !!!X !Xh:    
