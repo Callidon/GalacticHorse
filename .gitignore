@@ -12,3 +12,11 @@
 hs_err_pid*
 
 bower_components/
+
+#IntelliJ Files
+*.iml
+out/
+.idea/
+
+#Gradle
+.gradle/
