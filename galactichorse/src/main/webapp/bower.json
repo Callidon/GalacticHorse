@@ -1,0 +1,25 @@
+{
+  "name": "galactic-horse",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Callidon/GalacticHorse",
+  "authors": [
+    "Thomas Minier <tminier01@gmail.com>",
+    "Pierre Gaultier <puerrepierre@gmail.com>",
+    "Alexis Giraudet <giraudux@gmail.com>"
+  ],
+  "description": "Un moteur de recherche enrichi dédié au handicap",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
