@@ -1,3 +1,2 @@
-"use strict";
 
-angular.module("GalacticHorseChrome", ["GalacticHorseChrome-controller"]);
+angular.module("GalacticHorseChrome", ["GalacticHorseChrome.controllers", "GalacticHorseChrome.directives", "GalacticHorseChrome.services"]);

@@ -6,18 +6,19 @@
   </head>
   <body ng-app="GalacticHorseChrome">
 
-    <div ng-controller="FormController as formCtrl">
-      <form ng-submit="formCtrl.saveResource()">
-        {{ example }}
-        <input type="text" name="example" ng-model="example">
-        <input type="button" value="Save">
-      </form>
-    </div>
+    <form-register></form-register>
+    <ontology-list></ontology-list>
 
-    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="js/controllers/controllers.js"></script>
+    <script type="text/javascript" src="js/controllers/FormController.js"></script>
+    <script type="text/javascript" src="js/controllers/OntologyController.js"></script>
+    <script type="text/javascript" src="js/services/services.js"></script>
+    <script type="text/javascript" src="js/services/OntologySelection.js"></script>
+    <script type="text/javascript" src="js/directives/directives.js"></script>
+    <script type="text/javascript" src="js/directives/formRegister.js"></script>
+    <script type="text/javascript" src="js/directives/ontologyList.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
-    <script type="text/javascript" src="js/controller.js"></script>
 
   </body>
 </html>

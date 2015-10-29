@@ -12,7 +12,6 @@ angular.module("GalacticHorseSearch.directives")
         return {
             restrict: "E",
             templateUrl: "partials/directives/searchForm.html",
-            controller: "SearchController",
-            controllerAS: "searchCtrl"
+            controller: "SearchController as searchCtrl"
         }
     });

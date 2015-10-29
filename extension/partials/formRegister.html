@@ -1,0 +1,11 @@
+<form ng-submit="formCtrl.saveResource()">
+  <input type="text" name="new_elt" ng-model="formCtrl.new_elt">
+  <input type="submit" value="Save">
+
+  <h2>Elements de l'ontologies sélectionnés :</h2>
+  <ul>
+    <li ng-repeat="element in formCtrl.ontologyElts">
+      {{ element.name}}
+    </li>
+  </ul>
+</form>
