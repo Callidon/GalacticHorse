@@ -1,7 +1,14 @@
 <h2>Ontologie</h2>
 <ul>
-  <li ng-repeat="element in ontlgCtrl.elements">
+  <li ng-show="ontlgCtrl.previous[0]">
+    <a href="" ng-click="ontlgCtrl.goBack()">Go back</a>
+  </li>
+  <li ng-repeat="subcat in ontlgCtrl.currentSubCategories">
+    {{ subcat.name }}
+    <a href="" ng-click="ontlgCtrl.navigate(subcat)">Go</a>
+  </li>
+  <li ng-repeat="element in ontlgCtrl.currentElt" ng-class="{selected: ontlgCtrl.isSelected(element)}">
       {{ element.name }}
-      <a href="" ng-click="ontlgCtrl.add(element)">Select</a>
+      <a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Select</a>
   </li>
 </ul>

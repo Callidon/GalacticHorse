@@ -12,6 +12,13 @@ angular.module("GalacticHorseChrome.controllers")
 
     ctrl.ontologyElts = OntologySelection.elements;
 
+    /*
+     * Method who remove an ontology element from the selection
+     */
+    ctrl.remove = function(elt) {
+      OntologySelection.remove(elt);
+    }
+
     ctrl.saveResource = function() {
       // ...
     }

@@ -1,11 +1,18 @@
 <form ng-submit="formCtrl.saveResource()">
-  <input type="text" name="new_elt" ng-model="formCtrl.new_elt">
-  <input type="submit" value="Save">
+  <h2>Ajouter un nouveau site</h2>
+  <label for="url">URL du site</label>
+  <input type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_elt.url">
+  <br>
+  <input type="submit" value="Enregistrer">
 
-  <h2>Elements de l'ontologies sélectionnés :</h2>
-  <ul>
+  <h2>Elements de l'ontologies sélectionnés : </h2>
+  <ul ng-show="formCtrl.ontologyElts[0]">
     <li ng-repeat="element in formCtrl.ontologyElts">
-      {{ element.name}}
+      {{ element.name }}
+      <a href="" ng-click="formCtrl.remove(element)">Remove</a>
     </li>
   </ul>
+  <p ng-hide="formCtrl.ontologyElts[0]">
+    Aucun élément sélectionné
+  </p>
 </form>
