@@ -3,3 +3,5 @@ install:
   - scripts/install-chrome.sh
   - scripts/install-appengine.sh
 script: cd extension/ && npm test
+notifications:
+  email: false
