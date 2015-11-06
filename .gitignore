@@ -18,5 +18,8 @@ node_modules/
 out/
 .idea/
 
-#Gradle
-.gradle/
+# Maven
+target/
+
+# travis encrypted files
+galactic-horse-*.json
