@@ -10,13 +10,3 @@ install:
 script:
 - cd $TRAVIS_BUILD_DIR/extension && npm test
 - cd $TRAVIS_BUILD_DIR/galactichorse/src/main/webapp && npm test
-before_deploy:
-- mv $TRAVIS_BUILD_DIR/galactichorse/* $TRAVIS_BUILD_DIR/
-- rm -rf $TRAVIS_BUILD_DIR/extension $TRAVIS_BUILD_DIR/scripts $TRAVIS_BUILD_DIR/galactichorse
-deploy:
-  provider: gae
-  keyfile: $TRAVIS_BUILD_DIR/galactic-horse-a4beb2236124.json
-  skip_cleanup: true
-  default: true
-  config: $TRAVIS_BUILD_DIR/src/main/webapp/WEB-INF/appengine-web.xml
-  project: galactic-horse
