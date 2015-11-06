@@ -18,4 +18,5 @@ deploy:
   keyfile: $TRAVIS_BUILD_DIR/galactic-horse-a4beb2236124.json
   skip_cleanup: true
   default: true
+  config: $TRAVIS_BUILD_DIR/src/main/webapp/WEB-INF/appengine-web.xml
   project: galactic-horse
