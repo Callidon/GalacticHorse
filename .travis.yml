@@ -11,9 +11,8 @@ script:
 - cd $TRAVIS_BUILD_DIR/extension && npm test
 - cd $TRAVIS_BUILD_DIR/galactichorse/src/main/webapp && npm test
 before_deploy:
-- cd $TRAVIS_BUILD
-- mv galactichorse/* ./
-- rm -rf extension scripts galactichorse
+- mv $TRAVIS_BUILD/galactichorse/* $TRAVIS_BUILD/
+- rm -rf $TRAVIS_BUILD/extension $TRAVIS_BUILD/scripts $TRAVIS_BUILD/galactichorse
 deploy:
   provider: gae
   keyfile: galactic-horse-a4beb2236124.json
