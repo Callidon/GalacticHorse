@@ -15,7 +15,7 @@ before_deploy:
 - rm -rf $TRAVIS_BUILD_DIR/extension $TRAVIS_BUILD_DIR/scripts $TRAVIS_BUILD_DIR/galactichorse
 deploy:
   provider: gae
-  keyfile: galactic-horse-a4beb2236124.json
+  keyfile: $TRAVIS_BUILD_DIR/galactic-horse-a4beb2236124.json
   skip_cleanup: true
   default: true
   project: galactic-horse
