@@ -8,7 +8,7 @@
     <meta charset="utf-8">
   </head>
 
-  <body ng-app="myApp" ng-controller="SearchController as searchCtrl">
+  <body ng-app="GalacticHorse" ng-controller="SearchController as searchCtrl">
     <div class="container-fluid outerdiv">
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
@@ -24,7 +24,7 @@
 
       <div class="animated zoomInRight">
         <div class="input-group search-bar">
-          <input type="text" ng-model="search" ng-change="searchCtrl.change()" class="form-control" placeholder="Enter search" autofocus />
+          <input type="text" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" class="form-control" placeholder="Enter search" autofocus />
           <span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
         </div>
 
