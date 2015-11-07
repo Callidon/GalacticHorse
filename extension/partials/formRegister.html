@@ -1,9 +1,24 @@
 <form ng-submit="formCtrl.saveResource()">
   <h2>Ajouter un nouveau site</h2>
-  <label for="url">URL du site</label>
-  <input type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_elt.url">
+
+  <div ng-show="formCtrl.FLAG_success">
+      <p>
+          Insertion effectuée avec succès
+      </p>
+  </div>
+  <div ng-show="formCtrl.FLAG_error">
+      <p>
+          Une erreur s'est produite lors de l'insertion, l'opération n'a pu être menée à bien.
+      </p>
+  </div>
+
+  <label for="url">URL du site : </label>
+  <input type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_elt.url"><br>
+
+  <label for="name">Nom de la ressource : </label>
+  <input type="text" name="name" ng-model="formCtrl.new_elt.name">
   <br>
-  <input type="submit" value="Enregistrer">
+  <input type="submit" value="Enregistrer" ng-disabled="formCtrl.FLAG_processing">
 
   <h2>Elements de l'ontologies sélectionnés : </h2>
   <ul ng-show="formCtrl.ontologyElts[0]">

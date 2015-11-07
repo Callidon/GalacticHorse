@@ -17,6 +17,20 @@ public class GalacticHorse {
         entity.setProperty("data", data);
         datastore.put(entity);
     }
+
+    /*
+     * Version de post avec un objet Java sérialisé passé en paramètre dans le
+     * corps de la requête HTTP
+
+        @ApiMethod(name = "post", httpMethod = ApiMethod.HttpMethod.POST)
+        public void post(UrlDataBean bean) {
+            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+            Entity entity = new Entity("Entity", bean.getUrl());
+            entity.setProperty("url", bean.getUrl());
+            entity.setProperty("data", bean.getData());
+            datastore.put(entity);
+        }
+     */
     @ApiMethod(name = "get", httpMethod = ApiMethod.HttpMethod.GET)
     public UrlDataBean get(@Named("url") String url) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
