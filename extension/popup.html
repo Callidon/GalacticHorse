@@ -4,21 +4,25 @@
     <meta charset="utf-8">
     <title>GalacticHorse</title>
     <style media="screen">
-      body {
-        width: 300px;
-      }
+        body {
+            width: 300px;
+        }
 
-      .selected {
-        color: red;
-      }
+        .selected {
+            color: red;
+        }
     </style>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" charset="utf-8">
   </head>
   <body ng-app="GalacticHorseChrome">
+      <div class="container-fluid">
+          <form-register></form-register>
+          <ontology-list></ontology-list>
+      </div>
 
-    <form-register></form-register>
-    <ontology-list></ontology-list>
 
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/controllers/controllers.js"></script>
     <script type="text/javascript" src="js/controllers/FormController.js"></script>
     <script type="text/javascript" src="js/controllers/OntologyController.js"></script>

@@ -1,33 +1,42 @@
-<form ng-submit="formCtrl.saveResource()">
-  <h2>Ajouter un nouveau site</h2>
+<!-- Insertion form -->
+<form class="form-horizontal" ng-submit="formCtrl.saveResource()">
+  <legend>Ajouter un nouveau site</legend>
 
-  <div ng-show="formCtrl.FLAG_success">
+  <!-- Alert boxes -->
+  <div class="alert alert-dismissible alert-success" ng-show="formCtrl.FLAG_success">
+      <button type="button" class="close" ng-click="formCtrl.FLAG_success = false">x</button>
       <p>
           Insertion effectuée avec succès
       </p>
   </div>
-  <div ng-show="formCtrl.FLAG_error">
+  <div class="alert alert-dismissible alert-danger" ng-show="formCtrl.FLAG_error">
+      <button type="button" class="close" ng-click="formCtrl.FLAG_error = false">x</button>
       <p>
           Une erreur s'est produite lors de l'insertion, l'opération n'a pu être menée à bien.
       </p>
   </div>
 
-  <label for="url">URL du site : </label>
-  <input type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_elt.url"><br>
+  <div class="form-group">
+      <label for="url">URL du site : </label>
+      <input class="form-control" type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_elt.url">
+  </div>
 
-  <label for="name">Nom de la ressource : </label>
-  <input type="text" name="name" ng-model="formCtrl.new_elt.name">
-  <br>
-  <input type="submit" value="Enregistrer" ng-disabled="formCtrl.FLAG_processing">
+  <div class="form-group">
+      <label for="name">Nom de la ressource : </label>
+      <input class="form-control" type="text" name="name" ng-model="formCtrl.new_elt.name">
+  </div>
 
-  <h2>Elements de l'ontologies sélectionnés : </h2>
-  <ul ng-show="formCtrl.ontologyElts[0]">
-    <li ng-repeat="element in formCtrl.ontologyElts">
-      {{ element.name }}
-      <a href="" ng-click="formCtrl.remove(element)">Remove</a>
-    </li>
-  </ul>
-  <p ng-hide="formCtrl.ontologyElts[0]">
-    Aucun élément sélectionné
-  </p>
+  <input type="submit" class="btn btn-primary" value="Enregistrer" ng-disabled="formCtrl.FLAG_processing">
 </form>
+
+<!-- Ontology selection -->
+<h3>Elements de l'ontologies sélectionnés : </h3>
+<ul ng-show="formCtrl.ontologyElts[0]">
+  <li ng-repeat="element in formCtrl.ontologyElts">
+    {{ element.name }}
+    <a href="" ng-click="formCtrl.remove(element)">Remove</a>
+  </li>
+</ul>
+<p ng-hide="formCtrl.ontologyElts[0]">
+  Aucun élément sélectionné
+</p>
