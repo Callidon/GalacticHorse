@@ -39,7 +39,9 @@ angular.module('GalacticHorseSearch.controllers')
 		 ctrl.details = data;
 		 SearchMerge.getMergedDatas(data).then(function(data){console.log(data)},function(error){console.log(error)});
 
-    }
+    }, function(error) {
+		
+	});
 
 
      /*
