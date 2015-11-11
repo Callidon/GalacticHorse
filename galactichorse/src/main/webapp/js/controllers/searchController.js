@@ -33,7 +33,12 @@ angular.module('GalacticHorseSearch.controllers')
      * fonction which get the search from the input by an http get, and put it in ctrl.details
      */
     function update(){
-     CustomSearch.init(ctrl.search).then(function(data){ctrl.details = data},function(error){console.log(error)});
+     CustomSearch.init(ctrl.search).then(function(data){
+		 ctrl.details = data
+		 console.log(ctrl.details)
+		},function(error){
+			console.log(error)
+		});
     }
 
 
@@ -41,14 +46,22 @@ angular.module('GalacticHorseSearch.controllers')
      * fonction which display the next page of the actual search
      */
     ctrl.nextPage = function(){
-      CustomSearch.nextPage().then(function(data){ctrl.details = data},function(error){console.log(error)});
+      CustomSearch.nextPage().then(function(data){
+		  ctrl.details = data
+		},function(error){
+			console.log(error)
+		});
     }  
 
      /*
      * fonction which display the previous page of the actual search
      */    
     ctrl.previousPage = function(){
-      CustomSearch.previousPage().then(function(data){ctrl.details = data},function(error){console.log(error)});
+      CustomSearch.previousPage().then(function(data){
+		  ctrl.details = data
+		},function(error){
+			console.log(error)
+		});
     }
 
   }]);

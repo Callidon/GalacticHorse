@@ -36,7 +36,7 @@ angular.module('GalacticHorseSearch.services')
      * Method who jump to the next page of the search
      */
     srv.nextPage = function(){
-        indexPage = srv.details.queries.nextPage[0].startIndex;
+        indexPage = srv.details.data.queries.nextPage[0].startIndex;
         return fetch(indexPage);
     }
 
@@ -44,7 +44,7 @@ angular.module('GalacticHorseSearch.services')
      * Method who jump to the previous page of the search
      */
     srv.previousPage = function(){
-        indexPage = srv.details.queries.previousPage[0].startIndex;
+        indexPage = srv.details.data.queries.previousPage[0].startIndex;
         return fetch(indexPage);
     }
 

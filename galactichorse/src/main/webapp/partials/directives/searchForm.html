@@ -21,14 +21,14 @@
 		<button type="button" ng-click="searchCtrl.nextPage();">Next page</button>
 
 		<div ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">
-			Type : {{searchCtrl.details.items[n].kind}} <br/>
-			Title :{{searchCtrl.details.items[n].title}} <br/> 
-			HTML Title : {{searchCtrl.details.items[n].htmlTitle}} <br/>
-			Display Link : {{searchCtrl.details.items[n].displayLink}} <br/>
-			Snippet :{{searchCtrl.details.items[n].snippet}} <br/>
-			cacheId : {{searchCtrl.details.items[n].cacheId}} <br/>
-			formatedURL : {{searchCtrl.details.items[n].formattedUrl}} <br/>
-			htmlFormattedUrl : {{searchCtrl.details.items[n].htmlFormattedUrl}} <br/>
+			Type : {{searchCtrl.details.data.items[n].kind}} <br/>
+			Title :{{searchCtrl.details.data.items[n].title}} <br/> 
+			HTML Title : {{searchCtrl.details.data.items[n].htmlTitle}} <br/>
+			Display Link : {{searchCtrl.details.data.items[n].displayLink}} <br/>
+			Snippet :{{searchCtrl.details.data.items[n].snippet}} <br/>
+			cacheId : {{searchCtrl.details.data.items[n].cacheId}} <br/>
+			formatedURL : {{searchCtrl.details.data.items[n].formattedUrl}} <br/>
+			htmlFormattedUrl : {{searchCtrl.details.data.items[n].htmlFormattedUrl}} <br/>
 			<br/>
 		</div> 
 
