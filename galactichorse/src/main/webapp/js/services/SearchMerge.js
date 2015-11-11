@@ -17,7 +17,7 @@ angular.module('GalacticHorseSearch.services')
         var listUrlfromCS = [];
 
         for (i = 0; i < 10; i++) {
-            listUrlfromCS.push(ctrl.details.data.items[i].link);
+            listUrlfromCS.push(dataset.data.items[i].link);
         }
 
         // get the data from the datastore
@@ -38,15 +38,15 @@ angular.module('GalacticHorseSearch.services')
     */
     srv.getMergedDatas = function(custom_search) {
         var deferred = $q.defer();
-        var dataset = custom_search;
+        var dataset = custom_search.data;
 
         // retrieve the datas from the datastore
         datastore_search(custom_search).then(function(datas) {
             // TODO Unstable, cf travail d'Alexis sur le endpoint
-            var datstore_urls = datas.urls;
+            var datastore_urls = datas.items;
 
             // for each url in the datastore
-            datstore_urls.forEach(function(element, index, array) {
+            datastore_urls.forEach(function(element, index, array) {
                 var url = element.url;
                 var tags = element.tags;
 
