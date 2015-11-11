@@ -1,2 +1,2 @@
 
-angular.module("GalacticHorseSearch", ["GalacticHorseSearch.controllers", "GalacticHorseSearch.directives"]);
+angular.module("GalacticHorseSearch", ["GalacticHorseSearch.controllers", "GalacticHorseSearch.directives","GalacticHorseSearch.services"]);
