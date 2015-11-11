@@ -42,6 +42,7 @@ angular.module('GalacticHorseSearch.controllers')
     }, function(error) {
 		
 	});
+	}
 
 
      /*
