@@ -1,21 +1,21 @@
 /**
- * @ngdoc controller
- * @name GalacticHorseChrome.controllers:FormController
- * @description
- * A controller who handle the form in the extension
- */
+* @ngdoc controller
+* @name GalacticHorseChrome.controllers:FormController
+* @description
+* A controller who handle the form in the extension
+*/
 angular.module("GalacticHorseChrome.controllers")
-  .constant("ApiConstants", {
+.constant("ApiConstants", {
     "ontology_endpoint" : "",
     "resources_endpoint" : {
         "get" : "https://galactic-horse.appspot.com/_ah/api/galactichorse/v1/get/",
-        "post" : "https://galactic-horse.appspot.com/_ah/api/galactichorse/v1/post/"
+        "post" : "https://galactic-horse.appspot.com/_ah/api/search/v1/put"
     }
-  })
-  .controller("FormController", [ "ApiConstants", "OntologySelection", "$http", function(ApiConstants, OntologySelection, $http) {
+})
+.controller("FormController", [ "ApiConstants", "OntologySelection", "$http", function(ApiConstants, OntologySelection, $http) {
     var ctrl = this;
 
-    ctrl.new_elt = {};
+    ctrl.new_elt = "";
     // various flags for the saveResource operation
     ctrl.FLAG_processing = false;
     ctrl.FLAG_success = false;
@@ -24,17 +24,24 @@ angular.module("GalacticHorseChrome.controllers")
     ctrl.ontologyElts = OntologySelection.elements;
 
     /*
-     * Method who remove an ontology element from the selection
-     */
+    * Method who remove an ontology element from the selection
+    */
     ctrl.remove = function(elt) {
-      OntologySelection.remove(elt);
+        OntologySelection.remove(elt);
     }
 
     ctrl.saveResource = function() {
+        // correctly format the datas
+        var exported_selection = OntologySelection.export();
+        var datas = {
+            "url" : ctrl.new_elt,
+            "tags" : exported_selection
+        };
+
         // raise a flag to signal that the extension is processing the datas
         ctrl.FLAG_processing = true;
         // saving the resource on the app engine
-        $http.post(ApiConstants.resources_endpoint.post, ctrl.new_elt)
+        $http.post(ApiConstants.resources_endpoint.post, datas)
             .then(function(datas) {
                 // updating the flags
                 ctrl.FLAG_processing = false;
@@ -49,4 +56,4 @@ angular.module("GalacticHorseChrome.controllers")
                 console.log(error);
             });
     }
-  }]);
+}]);
