@@ -6,10 +6,12 @@
  * A controller who handle the searchs made by the user
  */
 angular.module('GalacticHorseSearch.controllers')
-  .controller('SearchController',["$http", 'CustomSearch', function($http,CustomSearch){
+  .controller('SearchController',["$http", 'CustomSearch',"SearchMerge", function($http,CustomSearch,SearchMerge){
     var pendingTask;
     var ctrl = this;
     var indexPage =1;
+	var listUrlfromCS; // from custom search
+	var listUrlfromEP; // from endpoint
 
     /*
      * We set the search as "lectures" by default
@@ -20,7 +22,7 @@ angular.module('GalacticHorseSearch.controllers')
     }
     
      /*
-     * fonction which update the page on a change in the search input
+     * fonction which update the page on a change in the search input<
      */
     ctrl.change = function(){
       if(pendingTask){
@@ -34,11 +36,9 @@ angular.module('GalacticHorseSearch.controllers')
      */
     function update(){
      CustomSearch.init(ctrl.search).then(function(data){
-		 ctrl.details = data
-		 console.log(ctrl.details)
-		},function(error){
-			console.log(error)
-		});
+		 ctrl.details = data;
+		 SearchMerge.getMergedDatas(data).then(function(data){console.log(data)},function(error){console.log(error)});
+
     }
 
 
