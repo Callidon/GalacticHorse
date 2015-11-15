@@ -25,6 +25,13 @@ angular.module('GalacticHorseSearch.services')
 
         $http.post(search_endpoint_url, { urls: listUrlfromCS })
         .then(function(datas) {
+
+            //if the result is empty, reject the promise
+            if(datas.data.items === undefined) {
+                deferred.reject({
+                    error : "Cannot find datas who match your search in the Datastore"
+                });
+            }
             deferred.resolve(datas.data);
         }, function(error) {
             deferred.reject(error);
@@ -40,9 +47,12 @@ angular.module('GalacticHorseSearch.services')
         var deferred = $q.defer();
         var dataset = custom_search.data;
 
+        // arrays for stocking the datas from the sort
+        var tagged_datas = [];
+        var non_tagged_datas = [];
+
         // retrieve the datas from the datastore
         datastore_search(custom_search).then(function(datas) {
-            // TODO Unstable, cf travail d'Alexis sur le endpoint
             var datastore_urls = datas.items;
 
             // for each url in the datastore
@@ -56,9 +66,18 @@ angular.module('GalacticHorseSearch.services')
                     if(element.link === url) {
                         // we update the current item in the custom search dataset
                         element.tags = tags;
+
+                        // we store the item in the tagged items' array
+                        tagged_datas.push(element);
+                    } else {
+                        // we store the item in the non sorted items' array
+                        non_tagged_datas.push(element);
                     }
                 });
             });
+
+            // merge the 2 arrays & store the result
+            dataset.items = tagged_datas.concat(non_tagged_datas);
 
             // resolve the promise
             deferred.resolve(dataset);
