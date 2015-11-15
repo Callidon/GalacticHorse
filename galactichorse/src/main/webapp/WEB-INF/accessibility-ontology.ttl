@@ -159,7 +159,7 @@ levelness:PoweredLift a access:Levelness, skos:Concept ;
     skos:narrower
         levelness:PlatformLift ,
         levelness:StairLift ,
-        levelness:Elevator ,
+        levelness:Elevator .
 
 levelness:PlatformLift a access:Levelness, skos:Concept ;
     skos:prefLabel "platform lift" ;
