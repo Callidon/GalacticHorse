@@ -3,6 +3,17 @@
 # Installation script for the chrome's extension
 PROJECT_PATH=`pwd`
 EXTENSION_PATH="$PROJECT_PATH/extension"
+NPM_OPTIONS="--production"
+
+# check the argument --dev
+if [ $# -eq 1 ]; then
+    if [[ $1 = "--dev" ]]; then
+		NPM_OPTIONS=" "
+	else
+		echo "Error : unsupported argument. Only --dev is available."
+	    exit 1
+	fi
+fi
 
 # check if npm is installed
 if ! hash npm 2>/dev/null; then
@@ -19,7 +30,7 @@ fi
 
 # move into the project folder & run npm to install dependencies
 cd $EXTENSION_PATH
-npm install --no-dev
+npm install $NPM_OPTIONS
 
 echo "Installation successfull !"
 exit 0

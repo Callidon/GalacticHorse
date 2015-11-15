@@ -4,6 +4,17 @@
 PROJECT_PATH=`pwd`
 APPENGINE_PATH="$PROJECT_PATH/galactichorse"
 WEBAPP_PATH="$APPENGINE_PATH/src/main/webapp"
+NPM_OPTIONS="--production"
+
+# check the argument --dev
+if [ $# -eq 1 ]; then
+    if [[ $1 = "--dev" ]]; then
+		NPM_OPTIONS=" "
+	else
+		echo "Error : unsupported argument. Only --dev is available."
+	    exit 1
+	fi
+fi
 
 # check if maven is installed
 if ! hash mvn 2>/dev/null; then
@@ -45,7 +56,7 @@ mvn install -Dmaven.javadoc.skip=true -DskipTests=true
 
 # move into the webapp folder & run npm to install web dependencies
 cd $WEBAPP_PATH
-npm install --no-dev
+npm install $NPM_OPTIONS
 
 echo "Installation successfull !"
 exit 0
