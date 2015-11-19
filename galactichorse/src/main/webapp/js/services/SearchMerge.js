@@ -26,11 +26,9 @@ angular.module('GalacticHorseSearch.services')
         $http.post(search_endpoint_url, { urls: listUrlfromCS })
         .then(function(datas) {
 
-            //if the result is empty, reject the promise
+            //if the result is empty, reject the promise and return the original dataset
             if(datas.data.items === undefined) {
-                deferred.reject({
-                    error : "Cannot find datas who match your search in the Datastore"
-                });
+                deferred.reject(dataset);
             }
             deferred.resolve(datas.data);
         }, function(error) {
