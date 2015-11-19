@@ -7,6 +7,14 @@
             <param-value>com.galactichorse.YourFirstAPI</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>ontology</servlet-name>
+        <servlet-class>com.galactichorse.Ontology</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ontology</servlet-name>
+        <url-pattern>/ontology</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SystemServiceServlet</servlet-name>
         <url-pattern>/_ah/spi/*</url-pattern>
