@@ -11,25 +11,16 @@
         <div class="nojs">Javascript is either disabled or not supported in your browser. Please enable it or use a Javascript enabled browser.</div>
       </noscript>
 
-      <div class="animated zoomInRight">
         <div class="input-group search-bar">
           <input type="text" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" class="form-control" placeholder="Enter search" autofocus />
           <span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
-        </div>
 
         <button type="button" ng-click="searchCtrl.previousPage();">Previous page</button>
 		<button type="button" ng-click="searchCtrl.nextPage();">Next page</button>
-
+		<br/>
 		<div ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">
-			Type : {{searchCtrl.details.data.items[n].kind}} <br/>
-			Title :{{searchCtrl.details.data.items[n].title}} <br/> 
-			HTML Title : {{searchCtrl.details.data.items[n].htmlTitle}} <br/>
-			Display Link : {{searchCtrl.details.data.items[n].displayLink}} <br/>
-			Snippet :{{searchCtrl.details.data.items[n].snippet}} <br/>
-			cacheId : {{searchCtrl.details.data.items[n].cacheId}} <br/>
-			formatedURL : {{searchCtrl.details.data.items[n].formattedUrl}} <br/>
-			htmlFormattedUrl : {{searchCtrl.details.data.items[n].htmlFormattedUrl}} <br/>
-			Link : {{searchCtrl.details.data.items[n].link}} <br/>
+			<a href="{{searchCtrl.details.data.items[n].link}}">{{searchCtrl.details.data.items[n].htmlTitle}} </a><br/>
+			{{searchCtrl.details.data.items[n].displayLink}} <br/>
 			<br/>
 		</div> 
 

@@ -32,7 +32,7 @@ angular.module('GalacticHorse', ['GalacticHorseSearch.services'])
      * fonction which get the search from the input by an http get, and put it in ctrl.details
      */
     function update(){
-     CustomSearch.init(ctrl.search).then(function(data){ctrl.details = data},function(error){console.log(error)});
+     CustomSearch.init(ctrl.search.replace(" ","+")).then(function(data){ctrl.details = data},function(error){console.log(error)});
     }
 
 
