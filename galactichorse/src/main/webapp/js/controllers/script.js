@@ -11,10 +11,10 @@ angular.module('GalacticHorse', ['GalacticHorseSearch.services'])
     var indexPage =1;
 
     /*
-     * We set the search as "lectures" by default
+     * We set the search as "Chateau des ducs de Bretagne" by default
      */
     if(ctrl.search === undefined){
-      ctrl.search = "lectures";
+      ctrl.search = "Chateau des ducs de Bretagne";
       update();
     }
     

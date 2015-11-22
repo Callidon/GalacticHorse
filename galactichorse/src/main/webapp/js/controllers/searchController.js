@@ -14,10 +14,10 @@ angular.module('GalacticHorseSearch.controllers')
 	var listUrlfromEP; // from endpoint
 
     /*
-     * We set the search as "lectures" by default
+     * We set the search as "Chateau des ducs de Bretagne" by default
      */
     if(ctrl.search === undefined){
-      ctrl.search = "lectures";
+      ctrl.search = "Chateau des ducs de Bretagne";
       update();
     }
     
