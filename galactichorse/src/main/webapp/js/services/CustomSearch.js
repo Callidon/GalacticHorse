@@ -14,7 +14,7 @@ angular.module('GalacticHorseSearch.services')
      */
   	var fetch = function(indexPage) {
       var deferred = $q.defer();
-      $http.get("https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=017576662512468239146:omuauf_lfve&q=" + srv.search +"&start=" + indexPage)
+      $http.get("https://www.googleapis.com/customsearch/v1?key=" + apiKey + "&cx=017467722503310211408:bkj5o5rfvk0&q=" + srv.search +"&start=" + indexPage)
         .then(function(datas) {
           srv.details = datas;
           deferred.resolve(datas);
