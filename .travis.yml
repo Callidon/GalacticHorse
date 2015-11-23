@@ -5,8 +5,8 @@ notifications:
 before_install:
   - openssl aes-256-cbc -K $encrypted_fa93c5106312_key -iv $encrypted_fa93c5106312_iv -in galactic-horse-a4beb2236124.json.enc -out galactic-horse-a4beb2236124.json -d
 install:
-- scripts/install-chrome.sh
-- scripts/install-appengine.sh
+- scripts/install-chrome.sh --dev
+- scripts/install-appengine.sh --dev
 script:
 - cd $TRAVIS_BUILD_DIR/extension && npm test
 - cd $TRAVIS_BUILD_DIR/galactichorse/src/main/webapp && npm test

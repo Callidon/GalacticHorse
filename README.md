@@ -1,4 +1,4 @@
-# GalacticHorse
+# GalacticHorse [![Build Status](https://travis-ci.org/Callidon/GalacticHorse.svg?branch=master)](https://travis-ci.org/Callidon/GalacticHorse)
 Un moteur de recherche enrichi dédié au handicap
 
 A skeleton application for Google Cloud Endpoints in Java.
