@@ -4,17 +4,10 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>com.galactichorse.YourFirstAPI</param-value>
+            <param-value>com.galactichorse.Ontology</param-value>
+            <param-value>com.galactichorse.Search</param-value>
         </init-param>
     </servlet>
-    <servlet>
-        <servlet-name>ontology</servlet-name>
-        <servlet-class>com.galactichorse.Ontology</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ontology</servlet-name>
-        <url-pattern>/ontology</url-pattern>
-    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SystemServiceServlet</servlet-name>
         <url-pattern>/_ah/spi/*</url-pattern>
