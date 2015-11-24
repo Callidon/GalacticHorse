@@ -2,7 +2,7 @@
       <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
           <div class="navbar-header">
-            <img src="image/octocat.png" style="float:left" alt="octocat" height="40" width="40"><a class="navbar-brand" href="https://github.com/Callidon/GalacticHorse.git"><b>&nbsp;GalacticHorse</b> <span class="span-style">HandiSearch</span></a>
+            <img src="image/logo.png" style="float:left" alt="octocat" height="40" width="40"><a class="navbar-brand" href="https://github.com/Callidon/GalacticHorse.git"><b>&nbsp;GalacticHorse</b> <span class="span-style">HandiSearch</span></a>
           </div>
         </div>
       </nav>
@@ -22,6 +22,7 @@
 		<div ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">
 			<b><a href="{{searchCtrl.details.data.items[n].link}}">{{searchCtrl.details.data.items[n].title}} </a> </b><br/>
 			{{searchCtrl.details.data.items[n].displayLink}} <br/>
+			{{searchCtrl.details.data.items[n].snippet}} <br/>
 			<br/>
 		</div> 
 
