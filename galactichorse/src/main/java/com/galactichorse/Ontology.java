@@ -1,6 +1,7 @@
 package com.galactichorse;
 
 import com.google.api.server.spi.config.*;
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.*;
 import org.apache.jena.riot.Lang;
 
@@ -23,10 +24,10 @@ public class Ontology {
         return ob;
     }
 
-    public static Model getOntologyModel() throws FileNotFoundException {
+    public static OntModel getOntologyModel() throws FileNotFoundException {
         File file = new File(ONTOLOGY_PATH);
         InputStream inputStream = new FileInputStream(file);
-        Model model = ModelFactory.createOntologyModel();
+        OntModel model = ModelFactory.createOntologyModel();
         model.read(inputStream, null, ONTOLOGY_INPUT_LANGUAGE.getLabel());
         return model;
     }
@@ -34,7 +35,7 @@ public class Ontology {
 
 class OntologyBean {
     private String jsonld;
-    private Map<String,Collection<LinkBean>> _links;
+    private Map<String, Collection<LinkBean>> _links;
 
     public String getJsonld() {
         return jsonld;
