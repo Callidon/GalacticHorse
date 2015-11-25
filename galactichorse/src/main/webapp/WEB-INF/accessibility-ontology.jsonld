@@ -1,0 +1,340 @@
+{
+  "@graph" : [ {
+    "@id" : "http://purl.org/net/accessibility/levelness/",
+    "@type" : "skos:ConceptScheme",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "seeAlso" : "access:Levelness",
+    "hasTopConcept" : [ "levelness:Level", "levelness:NotLevel", "levelness:Accessible", "levelness:NotAccessible" ],
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "entrance levelness"
+    }
+  }, {
+    "@id" : "levelness:Accessible",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "accessible"
+    }
+  }, {
+    "@id" : "levelness:Elevator",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : [ {
+      "@language" : "en-us",
+      "@value" : "elevator"
+    }, {
+      "@language" : "en-gb",
+      "@value" : "lift"
+    } ]
+  }, {
+    "@id" : "levelness:Level",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "level"
+    }
+  }, {
+    "@id" : "levelness:NotAccessible",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "not accessible"
+    }
+  }, {
+    "@id" : "levelness:NotLevel",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "narrower" : [ "levelness:Steps", "levelness:Ramp", "levelness:PoweredLift" ],
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "not level"
+    }
+  }, {
+    "@id" : "levelness:PlatformLift",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : "platform lift"
+  }, {
+    "@id" : "levelness:PoweredLift",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "definition" : {
+      "@language" : "en",
+      "@value" : "any type of powered lift (e.g. platform, stair, elevator)"
+    },
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "narrower" : [ "levelness:Elevator", "levelness:StairLift", "levelness:PlatformLift" ],
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "powered lift"
+    }
+  }, {
+    "@id" : "levelness:StairLift",
+    "@type" : [ "skos:Concept", "access:Levelness" ],
+    "inScheme" : "http://purl.org/net/accessibility/levelness/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : "stairlift"
+  }, {
+    "@id" : "http://purl.org/net/accessiblity/",
+    "@type" : "owl:Ontology",
+    "publisher" : "https://data.ox.ac.uk/id/open-data-team",
+    "label" : "Accessibility ontology"
+  }, {
+    "@id" : "access:EntranceOpeningType",
+    "@type" : "rdfs:Class",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "door entry type"
+    },
+    "subClassOf" : "skos:Concept"
+  }, {
+    "@id" : "access:Levelness",
+    "@type" : "rdfs:Class",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "entrance levelness"
+    },
+    "subClassOf" : "skos:Concept"
+  }, {
+    "@id" : "access:ParkingType",
+    "@type" : "rdfs:Class",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "parking type"
+    },
+    "subClassOf" : "skos:Concept"
+  }, {
+    "@id" : "access:doorEntryType/",
+    "@type" : "skos:ConceptScheme",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "types of door entry"
+    },
+    "topConcept" : [ "access:doorEntryType/AutomaticDoor", "access:doorEntryType/PoweredDoor", "access:doorEntryType/ManualDoor" ]
+  }, {
+    "@id" : "access:doorEntryType/AutomaticDoor",
+    "@type" : [ "skos:Concept", "access:EntranceOpeningType" ],
+    "definition" : {
+      "@language" : "en",
+      "@value" : "Door operated by a sensor."
+    },
+    "inScheme" : "access:doorEntryType/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "automatic"
+    }
+  }, {
+    "@id" : "access:doorEntryType/ManualDoor",
+    "@type" : [ "skos:Concept", "access:EntranceOpeningType" ],
+    "definition" : {
+      "@language" : "en",
+      "@value" : "Door is not powered, and requires opening manually."
+    },
+    "inScheme" : "access:doorEntryType/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "manual"
+    }
+  }, {
+    "@id" : "access:doorEntryType/PoweredDoor",
+    "@type" : [ "skos:Concept", "access:EntranceOpeningType" ],
+    "definition" : {
+      "@language" : "en",
+      "@value" : "Door operated by pressing a pad or button."
+    },
+    "inScheme" : "access:doorEntryType/",
+    "skos:isDefinedBy" : {
+      "@id" : "http://purl.org/net/accessiblity/"
+    },
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "powered"
+    }
+  }, {
+    "@id" : "access:entranceOpeiningType",
+    "@type" : [ "rdfs:Property", "owl:ObjectProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "type of door entry"
+    },
+    "range" : "access:doorEntryType/EntranceOpeningType"
+  }, {
+    "@id" : "access:hasHearingSupportSystem",
+    "@type" : [ "rdfs:Property", "owl:DatatypeProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "has a hearing support system"
+    },
+    "range" : "xsd:boolean"
+  }, {
+    "@id" : "access:liftToAllFloors",
+    "@type" : [ "rdfs:Property", "owl:DatatypeProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "all floors accessible by lift"
+    },
+    "range" : "xsd:boolean"
+  }, {
+    "@id" : "access:nearbyParkingType",
+    "@type" : [ "rdfs:Property", "owl:ObjectProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : "type of nearby parking@en",
+    "range" : "parkingType:ParkingType"
+  }, {
+    "@id" : "access:numberOfAccessibleToilets",
+    "@type" : [ "rdfs:Property", "owl:DatatypeProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "number of accessible toilets"
+    },
+    "range" : "xsd:int"
+  }, {
+    "@id" : "access:numberOfDisabledParkingSpaces",
+    "@type" : [ "rdfs:Property", "owl:DatatypeProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "number of disabled parking spaces"
+    },
+    "range" : "xsd:int"
+  }, {
+    "@id" : "access:numberOfFloors",
+    "@type" : [ "rdfs:Property", "owl:DatatypeProperty" ],
+    "domain" : "geo:SpatialThing",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "label" : {
+      "@language" : "en",
+      "@value" : "number of floors"
+    },
+    "range" : "xsd:int"
+  }, {
+    "@id" : "access:parkingType/",
+    "@type" : "skos:ConceptScheme",
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "parking types"
+    },
+    "topConcept" : [ "parkingType:BlueBadge", "parkingType:PayAndDisplay" ]
+  }, {
+    "@id" : "parkingType:BlueBadge",
+    "@type" : [ "skos:Concept", "access:ParkingType" ],
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "inScheme" : "access:parkingType/",
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "blue badge"
+    }
+  }, {
+    "@id" : "parkingType:PayAndDisplay",
+    "@type" : [ "skos:Concept", "access:ParkingType" ],
+    "isDefinedBy" : "http://purl.org/net/accessiblity/",
+    "inScheme" : "access:parkingType/",
+    "prefLabel" : {
+      "@language" : "en",
+      "@value" : "pay and display"
+    }
+  } ],
+  "@context" : {
+    "isDefinedBy" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#isDefinedBy",
+      "@type" : "@id"
+    },
+    "range" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#range",
+      "@type" : "@id"
+    },
+    "domain" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#domain",
+      "@type" : "@id"
+    },
+    "label" : "http://www.w3.org/2000/01/rdf-schema#label",
+    "inScheme" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#inScheme",
+      "@type" : "@id"
+    },
+    "definition" : "http://www.w3.org/2004/02/skos/core#definition",
+    "prefLabel" : "http://www.w3.org/2004/02/skos/core#prefLabel",
+    "publisher" : {
+      "@id" : "http://purl.org/dc/terms/publisher",
+      "@type" : "@id"
+    },
+    "subClassOf" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+      "@type" : "@id"
+    },
+    "hasTopConcept" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#hasTopConcept",
+      "@type" : "@id"
+    },
+    "seeAlso" : {
+      "@id" : "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "@type" : "@id"
+    },
+    "narrower" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#narrower",
+      "@type" : "@id"
+    },
+    "topConcept" : {
+      "@id" : "http://www.w3.org/2004/02/skos/core#topConcept",
+      "@type" : "@id"
+    },
+    "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+    "geo" : "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "parkingType" : "http://purl.org/net/accessiblity/parkingType/",
+    "xsd" : "http://www.w3.org/2001/XMLSchema#",
+    "owl" : "http://www.w3.org/2002/07/owl#",
+    "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "access" : "http://purl.org/net/accessiblity/",
+    "skos" : "http://www.w3.org/2004/02/skos/core#",
+    "entranceOpeiningType" : "http://purl.org/net/accessiblity/doorEntryType/",
+    "levelness" : "http://purl.org/net/accessibility/levelness/",
+    "dcterms" : "http://purl.org/dc/terms/"
+  }
+}
