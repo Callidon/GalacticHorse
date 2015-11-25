@@ -14,7 +14,7 @@ angular.module('GalacticHorseSearch.services')
     /*
      * Method who search the urls of the custom search dataset against the Datastore
      */
-    srv.datastoreSearch = function(dataset) {
+    var datastoreSearch = function(dataset) {
         // extract the urls from the custom search dataset
         var listUrlfromCS = [];
 		var items_length = dataset.items.length;
@@ -58,7 +58,7 @@ angular.module('GalacticHorseSearch.services')
         var non_tagged_datas = [];
 
         // retrieve the datas from the datastore
-        srv.datastoreSearch(custom_search).then(function(datas) {
+        datastoreSearch(custom_search).then(function(datas) {
 			// if some results have been found
 			if(FOUND_FLAG) {
 				var datastore_urls = datas.items;

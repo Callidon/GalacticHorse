@@ -5,10 +5,58 @@
 * A service who store the selected elements of an Ontology
 */
 angular.module("GalacticHorseChrome.services")
-.service("OntologySelection", function() {
+.service("OntologySelection", [ "$http", function($http) {
     var srv = this;
+	var ontology_endpoint = "https://galactic-horse.appspot.com/_ah/api/ontology/v1/ontologybean";
 
     srv.elements = [];
+	srv.context = {};
+	srv.ontology = {
+		elements : []
+	};
+
+	srv.parseOntology = function(ontology) {
+		var categories = {};
+		var graph = [
+			  {
+			    "@id": "http://example.org/BlueBadge",
+			    "@type": [
+			      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Class"
+			    ],
+			    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
+			      {
+			        "@id": "http://example.org/ParkingType"
+			      }
+			    ]
+			  },
+			  {
+			    "@id": "http://example.org/ParkingType",
+			    "@type": [
+			      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Class"
+			    ]
+			  }
+			];
+		/*var context = ontology["@context"];
+		var graph = ontology["@graph"];*/
+
+		graph.forEach(function(element, index, array) {
+			if(element["http://www.w3.org/2000/01/rdf-schema#subClassOf"] === undefined) {
+				categories[element["@id"]] = {
+					name : element["@id"],
+					elements : []
+				};
+			}
+		});
+
+		graph.forEach(function(element, index, array) {
+			if(element["http://www.w3.org/2000/01/rdf-schema#subClassOf"] !== undefined) {
+				var category = element["http://www.w3.org/2000/01/rdf-schema#subClassOf"][0]["@id"];
+				categories[category].elements.push(element);
+			}
+		});
+
+		return categories;
+	};
 
     /*
     * Method who add an ontology element to the selection
@@ -52,4 +100,4 @@ angular.module("GalacticHorseChrome.services")
 
         return res;
     }
-});
+}]);

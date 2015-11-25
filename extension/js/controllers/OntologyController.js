@@ -5,52 +5,14 @@
 * A controller who handle the display of the ontology
 */
 angular.module("GalacticHorseChrome.controllers")
-.controller("OntologyController", [ "OntologySelection", function(OntologySelection) {
+.controller("OntologyController", [ "OntologySelection", "$http", function(OntologySelection, $http) {
     var ctrl = this;
+	var elements = {};
+	var ontology_endpoint = "https://galactic-horse.appspot.com/_ah/api/ontology/v1/ontologybean";
 
-    // TODO replace with fetch by $http
-    var elements = {
-        subCategories : [
-            {
-                name: "Sub Category A",
-                content: {
-                    subCategories : [
-                        {
-                            name: "Sub Category B",
-                            content: {
-                                subCategories : [],
-                                elements : [
-                                    {
-                                        id: "x03",
-                                        name: "Handicap D"
-                                    }
-                                ]
-                            }
-                        }
-                    ],
-                    elements : [
-                        {
-                            id: "x02",
-                            name: "Handicap C"
-                        }
-                    ]
-                }
-            }
-        ],
-        elements : [
-            {
-                id: "x00",
-                name: "Handicap A"
-            },
-            {
-                id: "x01",
-                name: "Handicap B"
-            }
-        ]
-    };
-
-    ctrl.currentSubCategories = elements.subCategories;
-    ctrl.currentElt = elements.elements;
+	var elements = OntologySelection.parseOntology({});
+	ctrl.currentcategories = elements.categories;
+    ctrl.currentElt = elements;
     ctrl.previous = [];
 
     /*
@@ -73,12 +35,12 @@ angular.module("GalacticHorseChrome.controllers")
     ctrl.navigate = function(subCategory) {
         // push the current state in list of previous states
         ctrl.previous.push({
-            subCategories : ctrl.currentSubCategories,
+            categories : ctrl.currentcategories,
             elements : ctrl.currentElt
         });
         // update the current state with the new content
         ctrl.currentElt = subCategory.content.elements;
-        ctrl.currentSubCategories = subCategory.content.subCategories;
+        ctrl.currentcategories = subCategory.content.categories;
     }
 
     /*
@@ -94,7 +56,7 @@ angular.module("GalacticHorseChrome.controllers")
 
             // update the current state with the new content
             ctrl.currentElt = lastState.elements;
-            ctrl.currentSubCategories = lastState.subCategories;
+            ctrl.currentcategories = lastState.categories;
 
             // delete the state from the list of previous state
             ctrl.previous.splice(length - 1, 1);
