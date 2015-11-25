@@ -28,7 +28,7 @@
 <h3>Elements de l'ontologies sélectionnés : </h3>
 <ul ng-show="formCtrl.ontologyElts[0]">
   <li ng-repeat="element in formCtrl.ontologyElts">
-    {{ element.name }}
+    {{ element["@id"] }}
     <a href="" ng-click="formCtrl.remove(element)">Remove</a>
   </li>
 </ul>

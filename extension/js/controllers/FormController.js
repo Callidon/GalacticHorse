@@ -21,7 +21,7 @@ angular.module("GalacticHorseChrome.controllers")
     ctrl.FLAG_success = false;
     ctrl.FLAG_error = false;
 
-    ctrl.ontologyElts = OntologySelection.elements;
+    ctrl.ontologyElts = OntologySelection.selection;
 
     /*
     * Method who remove an ontology element from the selection
@@ -32,7 +32,7 @@ angular.module("GalacticHorseChrome.controllers")
 
     ctrl.saveResource = function() {
         // correctly format the datas
-        var exported_selection = OntologySelection.export();
+        var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
         var datas = {
             "url" : ctrl.new_elt,
             "tags" : exported_selection
@@ -49,11 +49,12 @@ angular.module("GalacticHorseChrome.controllers")
 
                 // resetting the form
                 ctrl.new_elt = {};
+				OntologySelection.reset();
             }, function(error) {
                 // updating the flags
                 ctrl.FLAG_processing = false;
                 ctrl.FLAG_error = true;
-                console.log(error);
+                console.error(error);
             });
     }
 }]);

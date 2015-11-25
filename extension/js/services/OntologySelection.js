@@ -9,12 +9,21 @@ angular.module("GalacticHorseChrome.services")
     var srv = this;
 	var ontology_endpoint = "https://galactic-horse.appspot.com/_ah/api/ontology/v1/ontologybean";
 
-    srv.elements = [];
-	srv.context = {};
-	srv.ontology = {
-		elements : []
+	// list of the instance to add
+	var instances = {
+		"@context": {
+			"nao": "http://www.semanticdesktop.org/ontologies/2007/08/15/nao/#"
+		},
+		"@id" : "",
+		"nao:hasTag": []
 	};
 
+	// the current selection
+	srv.selection = [];
+
+	/*
+	 * Méthode who parse an ontolgy and return it sorted
+	 */
 	srv.parseOntology = function(ontology) {
 		var categories = {};
 		var graph = [
@@ -62,42 +71,41 @@ angular.module("GalacticHorseChrome.services")
     * Method who add an ontology element to the selection
     */
     srv.add = function(element) {
-        var index = srv.elements.indexOf(element);
+        var index = srv.selection.indexOf(element);
         // if the element is not already in the selection
         if(index == -1) {
-            srv.elements.push(element);
+			instances["nao:hasTag"].push(element["@id"]);
+            srv.selection.push(element);
         }
     }
 
     /*
     * Method who remove an ontology element from the selection
     */
-    srv.remove = function(elt) {
-        var index = srv.elements.indexOf(elt);
+    srv.remove = function(element) {
+        var index_selection = srv.selection.indexOf(element);
         // if the element is in the selection
-        if(index > -1) {
-            srv.elements.splice(index, 1);
+        if(index_selection > -1) {
+			var index_instances = instances["nao:hasTag"].indexOf(element["@id"]);
+			instances["nao:hasTag"].splice(index_instances, 1);
+            srv.selection.splice(index_selection, 1);
         }
     }
 
     /*
-    * Method who check if an elemnt is in the selection
+    * Method who export the instances for a specific url
     */
-    srv.isSelected = function(elt) {
-        var index = srv.elements.indexOf(elt);
-        return index > -1;
+    srv.exportForUrl = function(url) {
+        var exported_instances = instances;
+		exported_instances["@id"] = url;
+        return exported_instances;
     }
 
-    /*
-    * Method who export the selection with the right format for App Engine
-    */
-    srv.export = function() {
-        var res = {};
-
-        srv.elements.forEach(function(element, index, array) {
-            res[element.id] = element.name;
-        });
-
-        return res;
-    }
+	/*
+	 * Method for reset the selection & the instances
+	 */
+	srv.reset = function() {
+		srv.selection = [];
+		instances["nao:hasTag"] = [];
+	}
 }]);
