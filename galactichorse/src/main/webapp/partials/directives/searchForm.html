@@ -1,29 +1,36 @@
-<div class="container-fluid outerdiv">
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <img src="image/logo.png" style="float:left" alt="octocat" height="40" width="40"><a class="navbar-brand" href="https://github.com/Callidon/GalacticHorse.git"><b>&nbsp;GalacticHorse</b> <span class="span-style">HandiSearch</span></a>
-          </div>
-        </div>
-      </nav>
+<div class="gitlink">
+	<a href="https://github.com/Callidon/GalacticHorse.git">
+		<img src="images/octocat.png" alt="octocat" height="50" width="50" >
+		<b>&nbsp;GalacticHorse</b> <span>Repository</span>
+	</a>
+</div>
 
-      <noscript>
-        <div class="nojs">Javascript is either disabled or not supported in your browser. Please enable it or use a Javascript enabled browser.</div>
-      </noscript>
-		
+<div class="extlink">
+<a href="https://github.com/Callidon/GalacticHorse/#">
+	<img src="images/logo-ext.svg" alt="extension" height="50" width="50" >
+	<b>&nbsp;GalacticHorse</b> <span>Extension</span>
+</a>
+</div>
 
-        <div class="input-group search-bar">
-			<input type="text" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" class="form-control" placeholder="Enter search" autofocus />
-			<span class="input-group-addon bar-style"><i class="glyphicon glyphicon-search"></i></span>
-		</div>
+<br/>
+<br/>
+<br/>
+<br/>
+
+	<img src="images/logo.png" class="logomid" alt="logo" id = "logo">
+	<br/>
+	<div class="blockmid" id="bm">
+		<input type="text" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" class="inputmid" placeholder="Enter search" autofocus /><span class="glyphicon glyphicon-search"></span>
 		<button type="button" ng-click="searchCtrl.previousPage();">Previous page</button>
 		<button type="button" ng-click="searchCtrl.nextPage();">Next page</button>
-		<br/>
-		<div ng-repeat="n in [0,1,2,3,4,5,6,7,8,9]">
-			<b><a href="{{searchCtrl.details.data.items[n].link}}">{{searchCtrl.details.data.items[n].title}} </a> </b><br/>
-			{{searchCtrl.details.data.items[n].displayLink}} <br/>
-			{{searchCtrl.details.data.items[n].snippet}} <br/>
-			<br/>
-		</div> 
+	</div>
+<br/>
+<br/>
+<div id="res" class="results">
 
-    </div>
+		<div ng-repeat="item in searchCtrl.details.data.items">
+			<b><a href="{{item.link}}">{{item.title}} </a> </b><br/>
+			{{item.displayLink}} <br/>
+			{{item.snippet}} <br/>
+			<br/>
+</div

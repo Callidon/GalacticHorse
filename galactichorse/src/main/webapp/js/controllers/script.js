@@ -10,13 +10,6 @@ angular.module('GalacticHorse', ['GalacticHorseSearch.services'])
     var ctrl = this;
     var indexPage =1;
 
-    /*
-     * We set the search as "Chateau des ducs de Bretagne" by default
-     */
-    if(ctrl.search === undefined){
-      ctrl.search = "Chateau des ducs de Bretagne";
-      update();
-    }
     
      /*
      * fonction which update the page on a change in the search input
@@ -25,7 +18,9 @@ angular.module('GalacticHorse', ['GalacticHorseSearch.services'])
       if(pendingTask){
         clearTimeout(pendingTask);
       }
-      pendingTask = setTimeout(update, 800);
+	  if(ctrl.search !== undefined){
+		pendingTask = setTimeout(update, 800);
+	  }
     };
 
      /*
@@ -51,5 +46,7 @@ angular.module('GalacticHorse', ['GalacticHorseSearch.services'])
     }
 
   }]);
+  
+  
   
   

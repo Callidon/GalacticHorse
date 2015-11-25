@@ -13,13 +13,6 @@ angular.module('GalacticHorseSearch.controllers')
 	var listUrlfromCS; // from custom search
 	var listUrlfromEP; // from endpoint
 
-    /*
-     * We set the search as "Chateau des ducs de Bretagne" by default
-     */
-    if(ctrl.search === undefined){
-      ctrl.search = "Chateau des ducs de Bretagne";
-      update();
-    }
     
      /*
      * fonction which update the page on a change in the search input<
