@@ -12,7 +12,7 @@ angular.module('GalacticHorseSearch.controllers')
     var indexPage =1;
 	var listUrlfromCS; // from custom search
 	var listUrlfromEP; // from endpoint
-
+	var newSearch = true;
     
      /*
      * fonction which update the page on a change in the search input<
@@ -31,13 +31,19 @@ angular.module('GalacticHorseSearch.controllers')
      CustomSearch.init(ctrl.search).then(function(data){
 		 ctrl.details = data;
 		 SearchMerge.getMergedDatas(data).then(function(data){console.log(data)},function(error){console.log(error)});
+		 setPositionResult()
 
     }, function(error) {
 		
 	});
 	}
 
-
+	function setPositionResult(){
+		$('#logo').css('margin', '0 1cm');
+		$('#logo').css('height', '100px');
+		$('#logo').css('width', '100px');
+		$('#bm').css('margin', '0 1cm');
+	}
      /*
      * fonction which display the next page of the actual search
      */
