@@ -1,7 +1,9 @@
 package com.galactichorse;
 
+import com.galactichorse.beans.DataBean;
 import com.google.api.server.spi.config.*;
 import com.google.appengine.api.datastore.*;
+import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
@@ -10,118 +12,101 @@ import com.hp.hpl.jena.reasoner.ReasonerRegistry;
 import com.hp.hpl.jena.reasoner.ValidityReport;
 import org.apache.jena.riot.Lang;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 @Api(name = "search")
 public class Search {
-    private static final String ENTITY_KIND_URL_TAGS = "url_tags";
-    private static final String ENTITY_KIND_URL_JSONLD = "url_jsonld";
+    private static final String ONTOLOGY_PATH = "WEB-INF/accessibility-ontology.ttl";
+    private static final Lang ONTOLOGY_LANGUAGE = Lang.TURTLE;
+    private static final Lang MODEL_LANGUAGE = Lang.JSONLD;
+    private static final String ENTITY_KIND_URL_MODEL = "url_model";
+    private static final String ENTITY_PROPERTY_MODEL = "model";
 
-    @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
-    public void put(UrlTagsBean urlTags) throws Exception {
-        URL url = new URL(urlTags.getUrl());
-        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        Entity entity = new Entity(ENTITY_KIND_URL_TAGS, urlTags.getUrl());
-        for (Map.Entry<String, Object> tag : urlTags.getTags().entrySet()) {
-            entity.setProperty(tag.getKey(), tag.getValue());
-        }
-        datastore.put(entity);
+    /**
+     *
+     * @return
+     * @throws IOException
+     */
+    @ApiMethod(name = "ontology", httpMethod = ApiMethod.HttpMethod.GET)
+    public DataBean getOntology() throws IOException {
+        DataBean reply = new DataBean();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        getOntologyModel().write(baos, MODEL_LANGUAGE.getLabel());
+        reply.setModel(baos.toString());
+        //reply.set_links();
+        return reply;
     }
 
-    @ApiMethod(name = "put_jsonld", httpMethod = ApiMethod.HttpMethod.POST)
-    public void putJsonld(UrlJsonldBean urlJsonld) throws Exception {
-        URL url = new URL(urlJsonld.getUrl());
-        Model ontology = Ontology.getOntologyModel();
+    /**
+     *
+     * @param urlModel
+     * @return
+     * @throws Exception
+     */
+    @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
+    public DataBean putUrlModel(DataBean urlModel) throws Exception {
+        DataBean reply = new DataBean();
+        URL url = new URL(urlModel.getUrl());
+        Model ontology = getOntologyModel();
         Model model = ModelFactory.createDefaultModel();
-        model.read(new ByteArrayInputStream(urlJsonld.getJsonld().getBytes()), null, Lang.JSONLD.getLabel());
+        model.read(new ByteArrayInputStream(urlModel.getModel().getBytes()), null, MODEL_LANGUAGE.getLabel());
         Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
         reasoner = reasoner.bindSchema(ontology);
         InfModel infmodel = ModelFactory.createInfModel(reasoner, model);
         ValidityReport validityReport = infmodel.validate();
         if (!validityReport.isValid()) {
-            throw new Exception();
+            throw new Exception("invalid model");
         }
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        Entity entity = new Entity(ENTITY_KIND_URL_JSONLD, urlJsonld.getUrl());
+        Entity entity = new Entity(ENTITY_KIND_URL_MODEL, url.toString());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        infmodel.write(baos, Lang.JSONLD.getLabel());
-        entity.setProperty("jsonld", baos.toString());
+        infmodel.write(baos, MODEL_LANGUAGE.getLabel());
+        entity.setProperty(ENTITY_PROPERTY_MODEL, baos.toString());
         datastore.put(entity);
+        //reply.set_links();
+        return reply;
     }
 
-    @ApiMethod(name = "search", httpMethod = ApiMethod.HttpMethod.POST)
-    public Collection<UrlTagsBean> searchUrls(UrlsBean urls) {
+    /**
+     *
+     * @param urls
+     * @return
+     */
+    @ApiMethod(name = "get", httpMethod = ApiMethod.HttpMethod.POST)
+    public DataBean searchUrls(DataBean urls) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        DataBean reply = new DataBean();
         Collection<Key> keys = new ArrayList<Key>();
-        Collection<UrlTagsBean> urlTagsCollection = new ArrayList<UrlTagsBean>();
+        Map<String,String> urlModels = new HashMap<String,String>();
         for (String url : urls.getUrls()) {
-            keys.add(KeyFactory.createKey(ENTITY_KIND_URL_TAGS, url));
+            keys.add(KeyFactory.createKey(ENTITY_KIND_URL_MODEL, url));
         }
         for (Map.Entry<Key, Entity> entry : datastore.get(keys).entrySet()) {
-            UrlTagsBean urlTags = new UrlTagsBean();
-            urlTags.setUrl(entry.getKey().getName());
-            urlTags.setTags(entry.getValue().getProperties());
-            urlTagsCollection.add(urlTags);
+            urlModels.put(entry.getKey().getName(), (String) entry.getValue().getProperty(ENTITY_PROPERTY_MODEL));
         }
-        return urlTagsCollection;
-    }
-}
-
-class UrlTagsBean {
-    private String url;
-    private Map<String, Object> tags;
-
-    public String getUrl() {
-        return url;
+        reply.setUrlModels(urlModels);
+        //reply.set_links();
+        return reply;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Map<String, Object> getTags() {
-        return tags;
-    }
-
-    public void setTags(Map<String, Object> tags) {
-        this.tags = tags;
-    }
-}
-
-class UrlsBean {
-    private Collection<String> urls;
-
-    public Collection<String> getUrls() {
-        return urls;
-    }
-
-    public void setUrls(Collection<String> urls) {
-        this.urls = urls;
-    }
-}
-
-class UrlJsonldBean {
-    private String url;
-    private String jsonld;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getJsonld() {
-        return jsonld;
-    }
-
-    public void setJsonld(String jsonld) {
-        this.jsonld = jsonld;
+    /**
+     * 
+     * @return
+     * @throws FileNotFoundException
+     */
+    public static OntModel getOntologyModel() throws FileNotFoundException {
+        File file = new File(ONTOLOGY_PATH);
+        InputStream inputStream = new FileInputStream(file);
+        OntModel model = ModelFactory.createOntologyModel();
+        model.read(inputStream, null, ONTOLOGY_LANGUAGE.getLabel());
+        return model;
     }
 }
