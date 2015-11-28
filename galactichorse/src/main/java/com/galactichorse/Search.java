@@ -1,6 +1,8 @@
 package com.galactichorse;
 
 import com.galactichorse.beans.DataBean;
+import com.galactichorse.beans.RequestBean;
+import com.galactichorse.beans.ResponseBean;
 import com.google.api.server.spi.config.*;
 import com.google.appengine.api.datastore.*;
 import com.hp.hpl.jena.ontology.OntModel;
@@ -36,13 +38,13 @@ public class Search {
      * @throws IOException
      */
     @ApiMethod(name = "ontology", httpMethod = ApiMethod.HttpMethod.GET)
-    public DataBean getOntology() throws IOException {
-        DataBean reply = new DataBean();
+    public ResponseBean getOntology() throws IOException {
+        ResponseBean response = new ResponseBean();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         getOntologyModel().write(baos, MODEL_LANGUAGE.getLabel());
-        reply.setModel(baos.toString());
-        //reply.set_links();
-        return reply;
+        response.setOntology(baos.toString());
+        //response.set_links();
+        return response;
     }
 
     /**
@@ -52,8 +54,8 @@ public class Search {
      * @throws Exception
      */
     @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
-    public DataBean putUrlModel(DataBean urlModel) throws Exception {
-        DataBean reply = new DataBean();
+    public ResponseBean putUrlModel(RequestBean urlModel) throws Exception {
+        ResponseBean response = new ResponseBean();
         URL url = new URL(urlModel.getUrl());
         Model ontology = getOntologyModel();
         Model model = ModelFactory.createDefaultModel();
@@ -71,8 +73,8 @@ public class Search {
         infmodel.write(baos, MODEL_LANGUAGE.getLabel());
         entity.setProperty(ENTITY_PROPERTY_MODEL, baos.toString());
         datastore.put(entity);
-        //reply.set_links();
-        return reply;
+        //response.set_links();
+        return response;
     }
 
     /**
@@ -81,9 +83,9 @@ public class Search {
      * @return
      */
     @ApiMethod(name = "get", httpMethod = ApiMethod.HttpMethod.POST)
-    public DataBean searchUrls(DataBean urls) {
+    public ResponseBean searchUrls(RequestBean urls) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        DataBean reply = new DataBean();
+        ResponseBean response = new ResponseBean();
         Collection<Key> keys = new ArrayList<Key>();
         Map<String,String> urlModels = new HashMap<String,String>();
         for (String url : urls.getUrls()) {
@@ -92,9 +94,9 @@ public class Search {
         for (Map.Entry<Key, Entity> entry : datastore.get(keys).entrySet()) {
             urlModels.put(entry.getKey().getName(), (String) entry.getValue().getProperty(ENTITY_PROPERTY_MODEL));
         }
-        reply.setUrlModels(urlModels);
-        //reply.set_links();
-        return reply;
+        response.setUrlModels(urlModels);
+        //response.set_links();
+        return response;
     }
 
     /**
