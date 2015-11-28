@@ -39,10 +39,7 @@ angular.module('GalacticHorseSearch.controllers')
 	}
 
 	function setPositionResult(){
-		$('#logo').css('margin', '0 1cm');
-		$('#logo').css('height', '100px');
-		$('#logo').css('width', '100px');
-		$('#bm').css('margin', '0 1cm');
+		//a faire quand ca marchera du tonnerre
 	}
      /*
      * fonction which display the next page of the actual search

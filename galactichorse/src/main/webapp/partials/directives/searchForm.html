@@ -18,11 +18,14 @@
 <br/>
 
 	<img src="images/logo.png" class="logomid" alt="logo" id = "logo">
+	<img src="images/textelogo.svg" class="textemid" alt="txtlogo" id = "txtlogo">
 	<br/>
 	<div class="blockmid" id="bm">
 		<input type="text" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" class="inputmid" placeholder="Enter search" autofocus /><span class="glyphicon glyphicon-search"></span>
-		<button type="button" ng-click="searchCtrl.previousPage();">Previous page</button>
-		<button type="button" ng-click="searchCtrl.nextPage();">Next page</button>
+		<div style ="margin: 0 auto;width:40%;">
+			<button type="button" ng-click="searchCtrl.previousPage();">Previous page</button>
+			<button type="button" ng-click="searchCtrl.nextPage();">Next page</button>
+		</div>
 	</div>
 <br/>
 <br/>

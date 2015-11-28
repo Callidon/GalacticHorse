@@ -1,5 +1,9 @@
 body {
-  background-color: #FFFFFF;
+  background-color: #66728a !important ;
+}
+
+a{
+	color : #FFF !important;
 }
 
 .gitlink {
@@ -13,13 +17,21 @@ body {
 
 .logomid{
 	display: block;
+	max-width: 10%;
+	height: auto;
 	margin: 0 auto;
-	height:300px;
-	width:300px;
+}
+
+.textemid{
+	display: block;
+	margin: 0 auto;
+	max-width: 10%;
+	height: auto;
+
 }
 
 .blockmid{
-	width:40%;
+	width:37%;
 	display: block;
 	margin: 0 auto;
 }
