@@ -1,6 +1,5 @@
 package com.galactichorse;
 
-import com.galactichorse.beans.DataBean;
 import com.galactichorse.beans.RequestBean;
 import com.galactichorse.beans.ResponseBean;
 import com.google.api.server.spi.config.*;
