@@ -2,16 +2,39 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>GalacticHorse - options</title>
+    <title>GalacticHorse</title>
+    <style media="screen">
+        body {
+            width: 300px;
+        }
+
+        .selected {
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" charset="utf-8">
   </head>
   <body ng-app="GalacticHorseChrome">
+      <div class="container">
+		  <h1>Galactic Horse - options</h1>
+		  <google-auth></google-auth>
+      </div>
 
-      <p>
-        Ceci est une page d'option :)
-      </p>
-    </div>
 
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
+	<script type="text/javascript" src="node_modules/satellizer/satellizer.min.js"></script>
+    <script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/controllers/controllers.js"></script>
+	<script type="text/javascript" src="js/controllers/AuthController.js"></script>
+    <script type="text/javascript" src="js/controllers/FormController.js"></script>
+    <script type="text/javascript" src="js/controllers/OntologyController.js"></script>
+    <script type="text/javascript" src="js/services/services.js"></script>
+    <script type="text/javascript" src="js/services/OntologySelection.js"></script>
+    <script type="text/javascript" src="js/directives/directives.js"></script>
+	<script type="text/javascript" src="js/directives/googleAuth.js"></script>
+    <script type="text/javascript" src="js/directives/formRegister.js"></script>
+    <script type="text/javascript" src="js/directives/ontologyList.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+
   </body>
 </html>
