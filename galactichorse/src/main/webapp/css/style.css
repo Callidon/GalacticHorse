@@ -31,7 +31,7 @@ a{
 }
 
 .blockmid{
-	width:37%;
+	width:40%;
 	display: block;
 	margin: 0 auto;
 }
@@ -39,7 +39,9 @@ a{
 .inputmid{
   width:100%;
   max-width:500px;
-  margin-bottom: 25px;
+  display: block;
+  margin: 0 auto;
+  height: auto;
 }
 
 .results{
