@@ -2,11 +2,24 @@ language: java
 jdk: openjdk7
 notifications:
   email: false
-before_install:
-  - openssl aes-256-cbc -K $encrypted_fa93c5106312_key -iv $encrypted_fa93c5106312_iv -in galactic-horse-a4beb2236124.json.enc -out galactic-horse-a4beb2236124.json -d
 install:
-- scripts/install-chrome.sh --dev
-- scripts/install-appengine.sh --dev
+  - scripts/install-chrome.sh --dev
+  - scripts/install-appengine.sh --dev
 script:
-- cd $TRAVIS_BUILD_DIR/extension && npm test
-- cd $TRAVIS_BUILD_DIR/galactichorse/src/main/webapp && npm test
+  - cd $TRAVIS_BUILD_DIR/extension && npm test
+  - cd $TRAVIS_BUILD_DIR/galactichorse/src/main/webapp && npm test
+before_deploy:
+  - mv $TRAVIS_BUILD_DIR/extension $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension
+  - mv $TRAVIS_BUILD_DIR/galactichorse $TRAVIS_BUILD_DIR/GalacticHorse-appengine
+  - zip -r $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension.zip $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension
+  - zip -r $TRAVIS_BUILD_DIR/GalacticHorse-appengine.zip $TRAVIS_BUILD_DIR/GalacticHorse-appengine
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: K/X0+vDte87f1qJ1vnoH46BhTTtd8wtuA7Z8xq2mE8d9UL5xHj8Vlvvl4ui6B0MlHs5dnOWhFxZTsqrrh01GP/Od61F3j4EaOLDqt0poaf3bgFoHyE5fwArjtJrC0LZxiY6CjQWZbGGrpd6Mue6CA0OU3xRv+lR2xw5ewPyYpwvxFqzHLV85ObbfsiNI/R6wTExQv/Vhk9hXX+E3yvl4977BHNcGHtcefFIWTwUL79kKW6MxaKoViiwR3ve5RkUBJExoM+7wkKu0N/O3kc3Tm7OzhFsuCoC0V+WtJWInyeSJ9DJJiaNYs4MMXOgxDjHK/KPlykTgudaBz4o3c8aWzoghJmvrkPzdIvPoVT5AxokFArLs9cPq7gDVBplS+JepmtiLQxt4fQeKEFlsRlfpOtziQMLFb9UjcJ9WJKIZq7rDDpt16+V56VxNwDR02OLJ7OlxxWqOL9i4MczVrOL+anOiRPbPmox10Mf8botM24XS3dquyC3Sz1lmHXN0vzlXiifWZbEXUUsPTSuoGw57SBB2N/mgS7eDzAHElzSv73yaVD3VAU0QPyBc2R1Dh2mZ7sYrl9qw+4N2YLqJUse1rxCt4uTE1IzmH2j/pCSbADCkZIbzFV77sdBcewGxdl0T6TCydP/3tZrajZjGBAEWZARAilD3lBmEe20bYUmLzJA=
+  file:
+    - $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension.zip
+    - $TRAVIS_BUILD_DIR/GalacticHorse-appengine.zip
+  on:
+    tags: true
