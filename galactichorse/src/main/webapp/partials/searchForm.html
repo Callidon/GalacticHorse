@@ -1,0 +1,26 @@
+<div class="form-search">
+	<div class="input-group  search-input">
+		<input type="text" class="form-control" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" placeholder="Enter search" autofocus />
+		<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+	</div>
+
+		<div class="search-navigation">
+			<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.previousPage();">Previous page</button>
+			<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.nextPage();">Next page</button>
+		</div>
+
+	<div class="row">
+
+		<div class="col-md-12" ng-repeat="item in searchCtrl.details.data.items">
+			<h4>
+				<a href="{{item.link}}">{{item.title}}</a>
+			</h4>
+			<p class="text-url">
+				{{item.displayLink}}
+			</p>
+			<p>
+				{{item.snippet}}
+			</p>
+		</div>
+	</div>
+</div>
