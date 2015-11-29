@@ -1,17 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie-edge">
+	<title>Galactic Horse</title>
+	<meta name="description" content="Un moteur de recherche enrichi dédié au handicap">
+	<meta name="author" content="Alexis Giraudet, Pierre Gaultier, Thomas Minier">
+	<meta name="keywords" content="galactic horse handicap recherche accessibility search">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
-    <!-- TODO ajouter les balises meta pour les auteurs, le SEO, etc -->
-    <title>Galactic Horse</title>
 </head>
 <body ng-app="GalacticHorseSearch">
 
-    <search-form></search-form>
-	
+	<header>
+		<div class="pull-left">
+			<img src="images/octocat.png" alt="Logo Dépôt Github" height="50" width="50" >
+			<a href="https://github.com/Callidon/GalacticHorse">
+				<b>GalacticHorse</b> Repository
+			</a>
+		</div>
+
+		<div class="pull-right">
+			<a href="https://github.com/Callidon/GalacticHorse">
+				<b>GalacticHorse</b> Extension
+			</a>
+			<img src="images/logo-ext.svg" alt="Logo extension Chrome" height="50" width="50" >
+		</div>
+	</header>
+
+	<div class="container">
+		<div class="row">
+			<img src="images/logo.png" class="img-responsive logomid" alt="Logo galacticHorse">
+			<img src="images/textelogo.svg" class="img-responsive logo-texte" alt="Logo texte GalacticHorse">
+		</div>
+
+	    <search-form></search-form>
+	</div>
+
 	<script type="text/javascript" src="node_modules/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="node_modules/angular/angular.min.js"></script>
 	<script type="text/javascript" src="js/services/services.js"></script>
 	<script type="text/javascript" src="js/services/CustomSearch.js"></script>

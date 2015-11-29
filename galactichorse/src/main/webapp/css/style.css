@@ -2,48 +2,43 @@ body {
   background-color: #66728a !important ;
 }
 
-a{
+a {
 	color : #FFF !important;
 }
 
-.gitlink {
-	float: left;
-}
-
-
-.extlink {
-	float: right;
-}
-
-.logomid{
+.logomid {
+	padding-top : 5px;
 	display: block;
-	max-width: 10%;
+	max-width: 20%;
+	margin: 0 auto;
 	height: auto;
-	margin: 0 auto;
 }
 
-.textemid{
+.logo-texte {
+	padding-top : 5px;
 	display: block;
 	margin: 0 auto;
-	max-width: 10%;
+	width: 20%;
 	height: auto;
 
 }
 
-.blockmid{
-	width:40%;
-	display: block;
-	margin: 0 auto;
+.form-search {
+	padding-top: 5px;
 }
 
-.inputmid{
-  width:100%;
+.search-input {
   max-width:500px;
   display: block;
   margin: 0 auto;
-  height: auto;
 }
 
-.results{
-	margin: 0 2cm;
+.search-navigation {
+	padding-top : 5px;
+	max-width:500px;
+	margin: 0 auto;
+}
+
+.text-url {
+	color : #f0ad4e;
 }
