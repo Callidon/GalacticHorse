@@ -12,7 +12,8 @@ angular.module("GalacticHorseChrome.services")
 	// list of the instance to add
 	var instances = {
 		"@context": {
-			"nao": "http://www.semanticdesktop.org/ontologies/2007/08/15/nao/#"
+			"nao": "http://www.semanticdesktop.org/ontologies/2007/08/15/nao/#",
+			"access" : "http://purl.org/net/accessiblity/"
 		},
 		"@id" : "",
 		"nao:hasTag": []

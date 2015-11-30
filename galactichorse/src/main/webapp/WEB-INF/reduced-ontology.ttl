@@ -8,3 +8,18 @@ access:ParkingType rdf:type rdfs:Class;
 access:BlueBadge rdf:type rdfs:Class;
 				rdfs:subClassOf access:ParkingType;
 				rdfs:label "parking with blue badge"@en.
+
+access:PayAndDisplay rdf:type rdfs:Class;
+					rdfs:subClassOf access:ParkingType;
+					rdfs:label "pay and display"@en.
+
+access:Guide rdf:type rdfs:Class;
+			rdfs:label "type of guide"@en.
+
+access:AudioGuide rdf:type rdfs:Class;
+				rdfs:subClassOf access:Guide;
+				rdfs:label "audio guide for deaf & blinded people"@en.
+
+access:VisioGuide rdf:type rdfs:Class;
+				rdfs:subClassOf access:Guide;
+				rdfs:label "visual guide"@en.
