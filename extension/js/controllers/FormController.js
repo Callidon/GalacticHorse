@@ -8,8 +8,8 @@ angular.module("GalacticHorseChrome.controllers")
 .constant("ApiConstants", {
     "ontology_endpoint" : "",
     "resources_endpoint" : {
-        "get" : "https://galactic-horse.appspot.com/_ah/api/galactichorse/v1/get/",
-        "post" : "https://galactic-horse.appspot.com/_ah/api/search/v1/put"
+        "get" : "https://galactic-horse.appspot.com/_ah/api/search/v1/responsebean",
+        "post" : "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel"
     }
 })
 .controller("FormController", [ "ApiConstants", "OntologySelection", "$http", function(ApiConstants, OntologySelection, $http) {
@@ -35,8 +35,10 @@ angular.module("GalacticHorseChrome.controllers")
         var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
         var datas = {
             "url" : ctrl.new_elt,
-            "tags" : exported_selection
+            "model" : /*JSON.stringify(exported_selection)*/ "lama des bois",
+			"urls" : []
         };
+
 
         // raise a flag to signal that the extension is processing the datas
         ctrl.FLAG_processing = true;

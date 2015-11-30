@@ -25,7 +25,7 @@ import java.util.Map;
  */
 @Api(name = "search")
 public class Search {
-    private static final String ONTOLOGY_PATH = "WEB-INF/accessibility-ontology.ttl";
+    private static final String ONTOLOGY_PATH = "WEB-INF/reduced-ontology.ttl";
     private static final Lang ONTOLOGY_LANGUAGE = Lang.TURTLE;
     private static final Lang MODEL_LANGUAGE = Lang.JSONLD;
     private static final String ENTITY_KIND_URL_MODEL = "url_model";
@@ -99,7 +99,7 @@ public class Search {
     }
 
     /**
-     * 
+     *
      * @return
      * @throws FileNotFoundException
      */
