@@ -23,16 +23,22 @@ angular.module('GalacticHorseSearch.services')
             listUrlfromCS.push(dataset.items[i].link);
         }
 
+		var request = {
+			url : "",
+			model : "",
+			urls : listUrlfromCS
+		}
+
         // get the data from the datastore
         var deferred = $q.defer();
 
-        $http.post(search_endpoint_url, { urls: listUrlfromCS })
+        $http.post(search_endpoint_url, request)
         .then(function(datas) {
 			// reset the FOUND_FLAG
 			FOUND_FLAG = false;
 
             //if the result is empty, reject the promise and return the original dataset
-            if(datas.data.items === undefined) {
+            if(datas.data.urlModels === undefined) {
                 deferred.resolve(dataset);
             } else {
 				// else, results have been found
@@ -61,28 +67,31 @@ angular.module('GalacticHorseSearch.services')
         datastoreSearch(custom_search).then(function(datas) {
 			// if some results have been found
 			if(FOUND_FLAG) {
-				var datastore_urls = datas.items;
+				var datastore_urls = datas.urlModels;
 
 				// for each url in the datastore
-				datastore_urls.forEach(function(element, index, array) {
-					var url = element.url;
-					var tags = element.tags;
+				for (var element in datastore_urls) {
 
-					// for each url in the custom search
-					dataset.items.forEach(function(element, index, array) {
-						// if the two urls matches
-						if(element.link === url) {
-							// we update the current item in the custom search dataset
-							element.tags = tags;
+					if (datastore_urls.hasOwnProperty(element)) {
+						var url = element;
+						var model = JSON.parse(datastore_urls[element]);
 
-							// we store the item in the tagged items' array
-							tagged_datas.push(element);
-						} else {
-							// we store the item in the non sorted items' array
-							non_tagged_datas.push(element);
-						}
-					});
-				});
+						// for each url in the custom search
+						dataset.items.forEach(function(element, index, array) {
+							// if the two urls matches
+							if(element.link === url) {
+								// we update the current item in the custom search dataset
+								element.model = model;
+
+								// we store the item in the tagged items' array
+								tagged_datas.push(element);
+							} else {
+								// we store the item in the non sorted items' array
+								non_tagged_datas.push(element);
+							}
+						});
+					}
+				}
 
 				// merge the 2 arrays & store the result
 				dataset.items = tagged_datas.concat(non_tagged_datas);

@@ -9,7 +9,7 @@ angular.module("GalacticHorseChrome.controllers")
     var ctrl = this;
 	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel";
 
-    ctrl.new_elt = "";
+    ctrl.new_url = "";
     // various flags for the saveResource operation
     ctrl.FLAG_processing = false;
     ctrl.FLAG_success = false;
@@ -44,7 +44,7 @@ angular.module("GalacticHorseChrome.controllers")
                 ctrl.FLAG_success = true;
 
                 // resetting the form
-                ctrl.new_elt = {};
+                ctrl.new_url = "";
 				OntologySelection.reset();
             }, function(error) {
                 // updating the flags
