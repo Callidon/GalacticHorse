@@ -25,31 +25,12 @@ angular.module("GalacticHorseChrome.services")
 	 * Méthode who parse an ontolgy and return it sorted
 	 */
 	srv.parseOntology = function(ontology) {
+		var context = ontology["@context"];
+		var graph = ontology["@graph"];
 		var categories = {};
-		var graph = [
-			  {
-			    "@id": "http://example.org/BlueBadge",
-			    "@type": [
-			      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Class"
-			    ],
-			    "http://www.w3.org/2000/01/rdf-schema#subClassOf": [
-			      {
-			        "@id": "http://example.org/ParkingType"
-			      }
-			    ]
-			  },
-			  {
-			    "@id": "http://example.org/ParkingType",
-			    "@type": [
-			      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Class"
-			    ]
-			  }
-			];
-		/*var context = ontology["@context"];
-		var graph = ontology["@graph"];*/
 
 		graph.forEach(function(element, index, array) {
-			if(element["http://www.w3.org/2000/01/rdf-schema#subClassOf"] === undefined) {
+			if(element["subClassOf"] === undefined) {
 				categories[element["@id"]] = {
 					name : element["@id"],
 					elements : []
@@ -58,8 +39,8 @@ angular.module("GalacticHorseChrome.services")
 		});
 
 		graph.forEach(function(element, index, array) {
-			if(element["http://www.w3.org/2000/01/rdf-schema#subClassOf"] !== undefined) {
-				var category = element["http://www.w3.org/2000/01/rdf-schema#subClassOf"][0]["@id"];
+			if(element["subClassOf"] !== undefined) {
+				var category = element["subClassOf"];
 				categories[category].elements.push(element);
 			}
 		});

@@ -5,15 +5,9 @@
 * A controller who handle the form in the extension
 */
 angular.module("GalacticHorseChrome.controllers")
-.constant("ApiConstants", {
-    "ontology_endpoint" : "",
-    "resources_endpoint" : {
-        "get" : "https://galactic-horse.appspot.com/_ah/api/search/v1/responsebean",
-        "post" : "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel"
-    }
-})
-.controller("FormController", [ "ApiConstants", "OntologySelection", "$http", function(ApiConstants, OntologySelection, $http) {
+.controller("FormController", [ "OntologySelection", "$http", function(OntologySelection, $http) {
     var ctrl = this;
+	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel";
 
     ctrl.new_elt = "";
     // various flags for the saveResource operation
@@ -35,7 +29,7 @@ angular.module("GalacticHorseChrome.controllers")
         var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
         var datas = {
             "url" : ctrl.new_elt,
-            "model" : /*JSON.stringify(exported_selection)*/ "lama des bois",
+            "model" : JSON.stringify(exported_selection),
 			"urls" : []
         };
 
@@ -43,7 +37,7 @@ angular.module("GalacticHorseChrome.controllers")
         // raise a flag to signal that the extension is processing the datas
         ctrl.FLAG_processing = true;
         // saving the resource on the app engine
-        $http.post(ApiConstants.resources_endpoint.post, datas)
+        $http.post(url_endpoint_put, datas)
             .then(function(datas) {
                 // updating the flags
                 ctrl.FLAG_processing = false;
