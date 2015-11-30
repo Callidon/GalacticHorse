@@ -7,9 +7,9 @@ a {
 }
 
 .logomid {
-	padding-top : 5px;
+	padding-top : 3cm;
 	display: block;
-	max-width: 20%;
+	max-width: 20% !important;
 	margin: 0 auto;
 	height: auto;
 }

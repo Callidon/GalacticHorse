@@ -29,10 +29,11 @@ angular.module('GalacticHorseSearch.controllers')
      */
     function update(){
      CustomSearch.init(ctrl.search).then(function(datas){
-		 ctrl.details = datas;
+		 /*ctrl.details = datas;*/
 		 SearchMerge.getMergedDatas(datas.data)
 		 .then(function(data){
-			 console.log(data)
+			console.log(data);
+			ctrl.details = data;
 		 }, function(error){
 			 console.error(error)
 		 });
