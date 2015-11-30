@@ -59,18 +59,18 @@ public class Search {
         Model ontology = getOntologyModel();
         Model model = ModelFactory.createDefaultModel();
         model.read(new ByteArrayInputStream(urlModel.getModel().getBytes()), null, MODEL_LANGUAGE.getLabel());
-        Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
+        /*Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
         reasoner = reasoner.bindSchema(ontology);
         InfModel infmodel = ModelFactory.createInfModel(reasoner, model);
         ValidityReport validityReport = infmodel.validate();
         if (!validityReport.isValid()) {
             throw new Exception("invalid model");
-        }
+        }*/
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Entity entity = new Entity(ENTITY_KIND_URL_MODEL, url.toString());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        infmodel.write(baos, MODEL_LANGUAGE.getLabel());
-        entity.setProperty(ENTITY_PROPERTY_MODEL, baos.toString());
+        /*inf*/model.write(baos, MODEL_LANGUAGE.getLabel());
+        entity.setProperty(ENTITY_PROPERTY_MODEL, new Text(baos.toString()));
         datastore.put(entity);
         //response.set_links();
         return response;
@@ -91,7 +91,7 @@ public class Search {
             keys.add(KeyFactory.createKey(ENTITY_KIND_URL_MODEL, url));
         }
         for (Map.Entry<Key, Entity> entry : datastore.get(keys).entrySet()) {
-            urlModels.put(entry.getKey().getName(), (String) entry.getValue().getProperty(ENTITY_PROPERTY_MODEL));
+            urlModels.put(entry.getKey().getName(), ((Text)(entry.getValue().getProperty(ENTITY_PROPERTY_MODEL))).getValue());
         }
         response.setUrlModels(urlModels);
         //response.set_links();
