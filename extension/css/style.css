@@ -1,0 +1,14 @@
+body {
+	padding: 10px;
+	width: 400px;
+	background-color: #66728a;
+	color: white;
+}
+
+a {
+	color: #f0ad4e;
+}
+
+legend {
+	color: white;
+}

@@ -17,6 +17,11 @@ angular.module("GalacticHorseChrome.controllers")
 
     ctrl.ontologyElts = OntologySelection.selection;
 
+	// get the url of the active tab
+	chrome.tabs.query({ active : true, lastFocusedWindow : true}, function(tabs) {
+		ctrl.new_url = tabs[0].url;
+	});
+
     /*
     * Method who remove an ontology element from the selection
     */
