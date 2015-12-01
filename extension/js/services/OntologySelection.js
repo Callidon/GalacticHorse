@@ -74,6 +74,13 @@ angular.module("GalacticHorseChrome.services")
         }
     }
 
+	/*
+	 * Method who test if an element is in the selection
+	 */
+	srv.isSelected = function(element) {
+		return (srv.selection.indexOf(element) != -1);
+	}
+
     /*
     * Method who export the instances for a specific url
     */

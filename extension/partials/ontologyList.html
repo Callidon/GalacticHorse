@@ -6,6 +6,7 @@
 		  	 <li ng-repeat="element in category.elements">
 	   		  {{ element["@id"] }}
 			  <a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Select</a>
+			  <span ng-show="ontlgCtrl.isSelected(element)" class="glyphicon glyphicon-ok"></span>
 	   	  </li>
 	  </ul>
   </li>

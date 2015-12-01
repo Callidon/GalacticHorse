@@ -33,10 +33,12 @@ angular.module("GalacticHorseChrome.controllers")
         // correctly format the datas
         var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
         var datas = {
-            "url" : ctrl.new_elt,
+            "url" : ctrl.new_url,
             "model" : JSON.stringify(exported_selection),
 			"urls" : []
         };
+
+		console.log(datas);
 
 
         // raise a flag to signal that the extension is processing the datas

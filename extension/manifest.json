@@ -1,18 +1,23 @@
 {
-  "manifest_version": 2,
+	"manifest_version": 2,
 
-  "name": "GalacticHorse",
-  "description": "Un moteur de recherche enrichi dédié au handicap",
-  "version": "0.0.1",
-
-  "browser_action": {
-    "default_icon" : "img/logo.png",
-    "default_popup": "popup.html",
-    "default_title" : "Galactic Horse"
-  },
-  "options_page" : "options.html",
-  "permissions": [
-    "activeTab",
-    "https://ajax.googleapis.com/"
-  ]
+	"name": "Galactic Horse",
+	"description": "Annoter le web via de puissantes annotations !",
+	"version": "0.5.0",
+	"homepage_url" : "http://galactic-horse.appspot.com/",
+	"browser_action": {
+		"default_icon" : "img/logo.png",
+		"default_popup": "popup.html",
+		"default_title" : "Galactic Horse"
+	},
+	"icons" : {
+		"16" : "img/logo16.png",
+		"48" : "img/logo48.png",
+		"128" : "img/logo128.png"
+	},
+	"options_page" : "options.html",
+	"permissions": [
+		"activeTab",
+		"https://ajax.googleapis.com/"
+	]
 }

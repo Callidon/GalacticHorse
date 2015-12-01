@@ -19,10 +19,17 @@ angular.module("GalacticHorseChrome.controllers")
 		console.error(error);
 	});
 
+	/*
+	 * Method who test if an element is in the selection
+	 */
+	ctrl.isSelected = function(element) {
+		return OntologySelection.isSelected(element);
+	}
+
     /*
     * Method who add an ontology element to the selection
     */
-    ctrl.add = function(elt) {
-        OntologySelection.add(elt);
+    ctrl.add = function(element) {
+        OntologySelection.add(element);
     }
 }]);
