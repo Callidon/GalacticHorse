@@ -1,12 +1,12 @@
 /**
  * @ngdoc directive
- * @name GalacticHorseChrome.directives:ontologyTag
+ * @name GalacticHorseSearch.directives:ontologyTag
  * @scope
  * @restrict AE
  * @description
  * A tag wich can be parameterized
  */
-angular.module("GalacticHorseChrome.directives")
+angular.module("GalacticHorseSearch.directives")
     .directive("ontologyTag", function() {
         return {
             restrict: "AE",

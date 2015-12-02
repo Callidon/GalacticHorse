@@ -1,4 +1,4 @@
-<div class="form-search">
+﻿<div class="form-search">
 	<div class="input-group  search-input">
 		<input type="text" class="form-control" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" placeholder="Enter search" autofocus />
 		<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
@@ -11,7 +11,7 @@
 
 	<div class="row">
 
-		<div class="col-md-12" ng-repeat="item in searchCtrl.details.items">
+		<div class="col-md-12" ng-repeat="item in searchCtrl.details.items track by $index">
 			<h4>
 				<a href="{{item.link}}">{{item.title}}</a>
 			</h4>
@@ -22,7 +22,7 @@
 				{{item.snippet}}
 			</p>
 			<p>
-				{{item.model.hasTag}}
+				<ontology-tag uri="{{item.model.hasTag}}"></ontology-tag>
 			</p>
 		</div>
 	</div>
