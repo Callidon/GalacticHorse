@@ -15,40 +15,42 @@ angular.module('GalacticHorseSearch.services')
      * Method who search the urls of the custom search dataset against the Datastore
      */
     var datastoreSearch = function(dataset) {
-        // extract the urls from the custom search dataset
-        var listUrlfromCS = [];
-		var items_length = dataset.items.length;
-
-        for (i = 0; i < items_length; i++) {
-            listUrlfromCS.push(dataset.items[i].link);
-        }
-
-		var request = {
-			url : "",
-			model : "",
-			urls : listUrlfromCS
-		}
-
-        // get the data from the datastore
         var deferred = $q.defer();
 
-        $http.post(search_endpoint_url, request)
-        .then(function(datas) {
-			// reset the FOUND_FLAG
-			FOUND_FLAG = false;
+		if(dataset.items === undefined) {
+			deferred.reject({ error : "The search is empty, cannot perform a merge" });
+		} else {
+			// extract the urls from the custom search dataset
+	        var listUrlfromCS = [];
+			var items_length = dataset.items.length;
 
-            //if the result is empty, reject the promise and return the original dataset
-            if(datas.data.urlModels === undefined) {
-                deferred.resolve(dataset);
-            } else {
-				// else, results have been found
-				FOUND_FLAG = true;
-				deferred.resolve(datas.data);
+	        for (i = 0; i < items_length; i++) {
+	            listUrlfromCS.push(dataset.items[i].link);
+	        }
+
+			var request = {
+				url : "",
+				model : "",
+				urls : listUrlfromCS
 			}
-        }, function(error) {
-            deferred.reject(error);
-        });
 
+	        $http.post(search_endpoint_url, request)
+	        .then(function(datas) {
+				// reset the FOUND_FLAG
+				FOUND_FLAG = false;
+
+	            //if the result is empty, reject the promise and return the original dataset
+	            if(datas.data.urlModels === undefined) {
+	                deferred.resolve(dataset);
+	            } else {
+					// else, results have been found
+					FOUND_FLAG = true;
+					deferred.resolve(datas.data);
+				}
+	        }, function(error) {
+	            deferred.reject(error);
+	        });
+		}
         return deferred.promise;
     }
 
