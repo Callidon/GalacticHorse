@@ -21,9 +21,13 @@
 			<p>
 				{{item.snippet}}
 			</p>
-			<p>
+			<div ng-if="item.model.hasTag !== undefined && !(angular.isArray(item.model.hasTag))">
 				<ontology-tag uri="{{item.model.hasTag}}"></ontology-tag>
-			</p>
+			</div>
+			<div ng-if="item.model.hasTag !== undefined && angular.isArray(item.model.hasTag)" ng-repeat="t in item.model.hasTag track by $index">
+				<ontology-tag uri="{{t}}"></ontology-tag>
+			</div>
+
 		</div>
 	</div>
 </div>

@@ -7,36 +7,23 @@
 angular.module("GalacticHorseSearch.controllers")
 .controller("TagController", [ "$scope", function($scope) {
     var ctrl = this;
-	ctrl.uri = $scope.uri;
-	ctrl.tags = [];
+	ctrl.uri = $scope.uri; 
 	console.log(ctrl.uri);
 
-	ctrl.uri = ctrl.uri.replace("[","");
-	ctrl.uri = ctrl.uri.replace("]","");
-	ctrl.uri = ctrl.uri.replaceAll("\"","");
-	
-	console.log(ctrl.uri);
-	for (t of ctrl.uri.split(",")){
-		switch(t) {
+		switch(ctrl.uri) {
 		case "access:AudioGuide":
-			ctrl.tags.push("fa fa-file-audio-o");
+			ctrl.tag ="fa fa-file-audio-o";
 			break;
 		case "access:VisioGuide":
-			 ctrl.tags.push("fa fa-binoculars");
+			 ctrl.tag ="fa fa-binoculars";
 			break;
 		case "access:BlueBadge":
-			 ctrl.tags.push("fa fa-check-circle");
+			 ctrl.tag ="fa fa-check-circle";
 			break;
 		case "access:PayAndDisplay":
-			ctrl.tags.push("fa fa-cc-paypal");
+			ctrl.tag ="fa fa-cc-paypal";
 			break;
 		}
-		console.log(t);
-	}	
+			
 }]);
-
-String.prototype.replaceAll = function(str1, str2, ignore) 
-{
-    return this.replace(new RegExp(str1.replace(/([\/\,\!\\\^\$\{\}\[\]\(\)\.\*\+\?\|\<\>\-\&])/g,"\\$&"),(ignore?"gi":"g")),(typeof(str2)=="string")?str2.replace(/\$/g,"$$$$"):str2);
-} 
 
