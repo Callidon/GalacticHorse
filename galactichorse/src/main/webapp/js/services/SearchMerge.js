@@ -82,6 +82,11 @@ angular.module('GalacticHorseSearch.services')
 						dataset.items.forEach(function(element, index, array) {
 							// if the two urls matches
 							if(element.link === url) {
+
+								if(angular.isString(model.hasTag)) {
+									var unique_tag = model.hasTag;
+									model.hasTag = [unique_tag];
+								}
 								// we update the current item in the custom search dataset
 								element.model = model;
 
