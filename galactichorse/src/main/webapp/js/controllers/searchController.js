@@ -37,22 +37,24 @@ angular.module('GalacticHorseSearch.controllers')
 		 }, function(error){
 			 console.error(error)
 		 });
-		 setPositionResult()
 
     }, function(error) {
 
 	});
 	}
 
-	function setPositionResult(){
-		//a faire quand ca marchera du tonnerre
-	}
      /*
      * fonction which display the next page of the actual search
      */
     ctrl.nextPage = function(){
-      CustomSearch.nextPage().then(function(data){
-		  ctrl.details = data
+      CustomSearch.nextPage().then(function(datas){
+		 SearchMerge.getMergedDatas(datas.data)
+		 .then(function(data){
+			console.log(data);
+			ctrl.details = data;
+		 }, function(error){
+			 console.error(error)
+		 });
 		}, function(error){
 			console.error(error)
 		});
@@ -62,8 +64,14 @@ angular.module('GalacticHorseSearch.controllers')
      * fonction which display the previous page of the actual search
      */
     ctrl.previousPage = function(){
-      CustomSearch.previousPage().then(function(data){
-		  ctrl.details = data
+      CustomSearch.previousPage().then(function(datas){
+		  SearchMerge.getMergedDatas(datas.data)
+		 .then(function(data){
+			console.log(data);
+			ctrl.details = data;
+		 }, function(error){
+			 console.error(error)
+		 });
 		}, function(error){
 			console.error(error)
 		});
