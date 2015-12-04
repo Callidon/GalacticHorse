@@ -21,7 +21,7 @@
 			<p>
 				{{item.snippet}}
 			</p>
-			<div ng-repeat="t in item.model.hasTag track by $index">
+			<div ng-repeat="t in item.model.hasTag">
 				<ontology-tag uri="{{t}}"></ontology-tag>
 			</div>
 
