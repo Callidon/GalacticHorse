@@ -8,12 +8,15 @@ angular.module("GalacticHorseChrome.controllers")
 .controller("OntologyController", [ "OntologySelection", "$http", function(OntologySelection, $http) {
     var ctrl = this;
 	ctrl.currentState = [];
+	ctrl.is_loading = true;
 	var url_endpoint_ontology = "https://galactic-horse.appspot.com/_ah/api/search/v1/responsebean";
 
 	ctrl.currentState = {};
 
+	// retrieve the ontology from the endpoint
 	$http.get(url_endpoint_ontology)
 	.then(function(datas) {
+		ctrl.is_loading = false;
 		ctrl.currentState = OntologySelection.parseOntology(JSON.parse(datas.data.ontology));
 	}, function(error) {
 		console.error(error);

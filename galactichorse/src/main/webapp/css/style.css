@@ -42,3 +42,10 @@ a {
 .text-url {
 	color : #f0ad4e;
 }
+
+.loading-text {
+	padding-top : 10px;
+	color: white;
+	margin: 0 auto;
+	width: 200px;
+}

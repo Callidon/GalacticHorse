@@ -1,13 +1,20 @@
-<h2>Ontologie</h2>
-<ul>
-  <li ng-repeat="category in ontlgCtrl.currentState">
-      {{ category.name }}
-		  <ul>
-		  	 <li ng-repeat="element in category.elements">
-	   		  {{ element["@id"] }}
-			  <a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Select</a>
-			  <span ng-show="ontlgCtrl.isSelected(element)" class="glyphicon glyphicon-ok"></span>
-	   	  </li>
-	  </ul>
-  </li>
+<h2>Tags</h2>
+
+<p ng-show="ontlgCtrl.is_loading">
+	<i class="fa fa-lg fa-spinner fa-pulse"></i> Chargement des tags
+</p>
+
+<ul class="fa-ul" ng-hide="ontlgCtrl.is_loading">
+	<li ng-repeat="category in ontlgCtrl.currentState">
+		<i class="fa-li fa fa-shield fa-rotate-270"></i>
+		{{ category.name }}
+		<ul class="fa-ul">
+			<li ng-repeat="element in category.elements">
+				<i class="fa-li fa fa-square" ng-hide="ontlgCtrl.isSelected(element)"></i>
+				<i class="fa-li fa fa-check-square" ng-show="ontlgCtrl.isSelected(element)"></i>
+				{{ element["@id"] }}
+				<a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Ajouter</a>
+			</li>
+		</ul>
+	</li>
 </ul>

@@ -9,7 +9,11 @@
 			<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.nextPage();">Next page</button>
 		</div>
 
-	<div class="row">
+	<span class="loading-text center-block" ng-show="searchCtrl.is_loading">
+		<i class="fa fa-lg fa-spinner fa-pulse"></i> Recherche en cours
+	</span>
+
+	<div class="row" ng-hide="searchCtrl.is_loading">
 
 		<div class="col-md-12" ng-repeat="item in searchCtrl.details.items track by $index">
 			<h4>
