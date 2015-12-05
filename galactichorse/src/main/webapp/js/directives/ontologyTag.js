@@ -11,7 +11,8 @@ angular.module("GalacticHorseSearch.directives")
         return {
             restrict: "AE",
 			scope : {
-				uri : "@uri"
+				uri : "@uri",
+				label : "@label"
 			},
             templateUrl: "partials/ontologyTag.html",
             controller: "TagController as tagCtrl"
