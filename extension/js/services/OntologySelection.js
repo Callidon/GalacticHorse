@@ -2,7 +2,7 @@
 * @ngdoc service
 * @name GalacticHorseChrome.services:OntologySelection
 * @description
-* A service who store the selected elements of an Ontology
+* A service which store the selected elements of an Ontology
 */
 angular.module("GalacticHorseChrome.services")
 .service("OntologySelection", [ "$http", function($http) {
@@ -23,7 +23,7 @@ angular.module("GalacticHorseChrome.services")
 	srv.selection = [];
 
 	/*
-	 * Méthode who parse an ontolgy and return it sorted
+	 * Method which parse an ontolgy and return it sorted
 	 */
 	srv.parseOntology = function(ontology) {
 		var context = ontology["@context"];
@@ -50,7 +50,7 @@ angular.module("GalacticHorseChrome.services")
 	};
 
     /*
-    * Method who add an ontology element to the selection
+    * Method which add an ontology element to the selection
     */
     srv.add = function(element) {
         var index = srv.selection.indexOf(element);
@@ -62,7 +62,7 @@ angular.module("GalacticHorseChrome.services")
     }
 
     /*
-    * Method who remove an ontology element from the selection
+    * Method which remove an ontology element from the selection
     */
     srv.remove = function(element) {
         var index_selection = srv.selection.indexOf(element);
@@ -75,14 +75,14 @@ angular.module("GalacticHorseChrome.services")
     }
 
 	/*
-	 * Method who test if an element is in the selection
+	 * Method which test if an element is in the selection
 	 */
 	srv.isSelected = function(element) {
 		return (srv.selection.indexOf(element) != -1);
 	}
 
     /*
-    * Method who export the instances for a specific url
+    * Method which export the instances for a specific url
     */
     srv.exportForUrl = function(url) {
         var exported_instances = instances;

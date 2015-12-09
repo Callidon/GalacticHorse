@@ -2,6 +2,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix access: <http://purl.org/net/accessiblity/> .
 
+#ParkingType
 access:ParkingType rdf:type rdfs:Class;
 				rdfs:label "type of parking"@en.
 
@@ -13,6 +14,7 @@ access:PayAndDisplay rdf:type rdfs:Class;
 					rdfs:subClassOf access:ParkingType;
 					rdfs:label "pay and display"@en.
 
+#Guide
 access:Guide rdf:type rdfs:Class;
 			rdfs:label "type of guide"@en.
 
@@ -23,3 +25,43 @@ access:AudioGuide rdf:type rdfs:Class;
 access:VisioGuide rdf:type rdfs:Class;
 				rdfs:subClassOf access:Guide;
 				rdfs:label "visual guide"@en.
+
+#EntranceOpeningType	
+access:EntranceOpeningType rdf:type rdfs:Class;
+				rdfs:label "type of Entrance"@en.
+				
+access:ManualDoor rdf:type rdfs:Class;
+				rdfs:subClassOf access:EntranceOpeningType;
+				rdfs:label "Manual Door"@en.
+				
+access:PoweredDoor rdf:type rdfs:Class;
+				rdfs:subClassOf access:EntranceOpeningType;
+				rdfs:label "Powered Door"@en.
+				
+access:AutomaticDoor rdf:type rdfs:Class;
+				rdfs:subClassOf access:EntranceOpeningType;
+				rdfs:label "Automatic Door"@en.
+
+#FloorAccessType	
+access:FloorAccessType rdf:type rdfs:Class;
+				rdfs:label "type of floor access"@en.
+				
+access:Elevator rdf:type rdfs:Class;
+				rdfs:subClassOf access:FloorAccessType;
+				rdfs:label "Access by Elevator"@en.
+				
+access:Stairs rdf:type rdfs:Class;
+				rdfs:subClassOf access:FloorAccessType;
+				rdfs:label "access by Stairs"@en.
+				
+#EaseofAccess	
+access:EaseofAccess rdf:type rdfs:Class;
+				rdfs:label "ease of access"@en.
+				
+access:EasyAccess rdf:type rdfs:Class;
+				rdfs:subClassOf access:EaseofAccess;
+				rdfs:label "The access is easy"@en.
+				
+access:DifficultAccess rdf:type rdfs:Class;
+				rdfs:subClassOf access:EaseofAccess;
+				rdfs:label "The access is difficult"@en.

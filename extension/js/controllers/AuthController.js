@@ -44,7 +44,6 @@ angular.module("GalacticHorseChrome.controllers")
 				$http.defaults.headers.common["X-Acces-Token"] = token || "";
 
 				chrome.storage.local.set({ "gh_token" : token }, function() {
-					console.log("stored");
 				});
 			}
 		});
