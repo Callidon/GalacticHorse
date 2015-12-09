@@ -30,7 +30,7 @@
 	<ul class="fa-ul" ng-show="formCtrl.ontologyElts[0]">
 		<li ng-repeat="element in formCtrl.ontologyElts">
 			<i class="fa-li fa fa-plus-square"></i>
-			{{ element["@id"] }}
+			{{ element["@id"] | translate }}
 			<a href="" ng-click="formCtrl.remove(element)">Supprimer</a>
 		</li>
 	</ul>
