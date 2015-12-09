@@ -30,7 +30,7 @@ angular.module("GalacticHorseChrome",
 
 		$translateProvider.translations("fr", {
 			"access:ParkingType" : "Type de parking",
-			"access:BlueBadge" : "Carte bleue",
+			"access:BlueBadge" : "Badge bleue",
 			"access:PayAndDisplay" : "Classique",
 			"access:Guide" : "Guide(s) disponible(s)",
 			"access:AudioGuide" : "Audio-guide",

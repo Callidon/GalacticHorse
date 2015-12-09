@@ -1,7 +1,19 @@
-<div ng-hide="authCtrl.is_login">
-	<button type="button" name="signin" class="btn btn-sm btn-warning"  ng-click="authCtrl.login()">Se connecter</button>
+<div class="login-form" ng-hide="authCtrl.is_login">
+	<img class="logo" src="img/textelogo.svg"/><br>
+	Vous devez vous connecter pour utiliser cette extension.<br>
+	<button type="button" name="signin" class="btn btn-sm btn-warning login-btn"  ng-click="authCtrl.login()">
+		<i class="fa fa-lg fa-google-plus"></i>
+		Connexion
+	</button>
 </div>
 
-<div class="pull-right" ng-show="authCtrl.is_login">
-	<button type="button" name="signin" class="btn btn-sm btn-warning"  ng-click="authCtrl.logout()">Se déconnecter</button>
+<div ng-show="authCtrl.is_login">
+	<img class="logo pull-left" src="img/textelogo.svg"/>
+	<button type="button" name="signin" class="btn btn-sm btn-warning pull-right"  ng-click="authCtrl.logout()">
+		<i class="fa fa-lg fa-toggle-left"></i>
+		Déconnexion
+	</button>
+
+	<form-register></form-register>
+	<ontology-list></ontology-list>
 </div>

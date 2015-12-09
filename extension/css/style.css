@@ -12,3 +12,18 @@ a {
 legend {
 	color: white;
 }
+
+.logo {
+	width: 150px;
+	margin: 0 auto;
+}
+
+.login-form {
+	text-align: center;
+	width: 200px;
+	margin: 0 auto;
+}
+
+.login-btn {
+	margin-top: 5px;
+}
