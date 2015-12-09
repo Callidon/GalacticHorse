@@ -4,7 +4,7 @@
  * @scope
  * @restrict E
  * @description
- * A form which an user can use to register a website
+ * A form that an user can use to register a website
  */
 angular.module("GalacticHorseChrome.directives")
     .directive("formRegister", function() {

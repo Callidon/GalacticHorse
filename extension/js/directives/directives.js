@@ -1,4 +1,4 @@
 /*
- * Module who contains all the directives
+ * Module which contains all the directives
  */
 angular.module("GalacticHorseChrome.directives", []);

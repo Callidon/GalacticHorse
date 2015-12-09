@@ -2,7 +2,7 @@
 * @ngdoc controller
 * @name GalacticHorseChrome.controllers:OntologyController
 * @description
-* A controller who handle the display of the ontology
+* A controller which handle the display of the ontology
 */
 angular.module("GalacticHorseChrome.controllers")
 .controller("OntologyController", [ "OntologySelection", "GoogleAuth", "$http", function(OntologySelection, GoogleAuth, $http) {
@@ -32,14 +32,14 @@ angular.module("GalacticHorseChrome.controllers")
 	});
 
 	/*
-	 * Method who test if an element is in the selection
+	 * Method which test if an element is in the selection
 	 */
 	ctrl.isSelected = function(element) {
 		return OntologySelection.isSelected(element);
 	}
 
     /*
-    * Method who add an ontology element to the selection
+    * Method which add an ontology element to the selection
     */
     ctrl.add = function(element) {
         OntologySelection.add(element);

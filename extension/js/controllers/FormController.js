@@ -2,7 +2,7 @@
 * @ngdoc controller
 * @name GalacticHorseChrome.controllers:FormController
 * @description
-* A controller who handle the form in the extension
+* A controller which handle the form in the extension
 */
 angular.module("GalacticHorseChrome.controllers")
 .controller("FormController", [ "OntologySelection", "$http", "GoogleAuth", "$scope", function(OntologySelection, $http, GoogleAuth, $scope) {
@@ -33,7 +33,7 @@ angular.module("GalacticHorseChrome.controllers")
 	});
 
     /*
-    * Method who remove an ontology element from the selection
+    * Method which remove an ontology element from the selection
     */
     ctrl.remove = function(elt) {
         OntologySelection.remove(elt);
