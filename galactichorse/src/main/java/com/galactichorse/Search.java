@@ -4,7 +4,9 @@ import com.galactichorse.beans.LinkBean;
 import com.galactichorse.beans.RequestBean;
 import com.galactichorse.beans.ResponseBean;
 import com.google.api.server.spi.config.*;
+import com.google.api.server.spi.response.ForbiddenException;
 import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.users.User;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -24,7 +26,10 @@ import java.util.Map;
 /**
  *
  */
-@Api(name = "search")
+@Api(name = "search",
+     scopes = {Constants.EMAIL_SCOPE},
+     clientIds = {Constants.WEB_CLIENT_ID, Constants.EXTENSIO_CLIENT_ID},
+     audiences = {Constants.ANDROID_AUDIENCE})
 public class Search {
     private static final String ONTOLOGY_PATH = "WEB-INF/reduced-ontology.ttl";
     private static final Lang ONTOLOGY_LANGUAGE = Lang.TURTLE;
@@ -57,7 +62,10 @@ public class Search {
      * @throws Exception
      */
     @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
-    public ResponseBean putUrlModel(RequestBean urlModel) throws Exception {
+    public ResponseBean putUrlModel(RequestBean urlModel, User user) throws Exception {
+        if(user == null)
+            throw new ForbiddenException("user not logged in");
+
         ResponseBean response = new ResponseBean();
         URL url = new URL(urlModel.getUrl());
 

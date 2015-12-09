@@ -28,10 +28,17 @@ angular.module("GalacticHorseChrome.controllers")
 		})
 	}
 
+<<<<<<< HEAD
 	/*
 	 * Method which logout the user
 	 */
 	ctrl.logout = function() {
 		GoogleAuth.logout();
+=======
+				chrome.storage.local.set({ "gh_token" : token }, function() {
+				});
+			}
+		});
+>>>>>>> 62f6eceefcf4e15542ce591731c6a9f3de400b78
 	}
 }]);
