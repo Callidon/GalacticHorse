@@ -5,19 +5,28 @@
 * A controller who handle the display of the ontology
 */
 angular.module("GalacticHorseChrome.controllers")
-.controller("OntologyController", [ "OntologySelection", "$http", function(OntologySelection, $http) {
+.controller("OntologyController", [ "OntologySelection", "GoogleAuth", "$http", function(OntologySelection, GoogleAuth, $http) {
     var ctrl = this;
-	ctrl.currentState = [];
-	ctrl.is_loading = true;
 	var url_endpoint_ontology = "https://galactic-horse.appspot.com/_ah/api/search/v1/responsebean";
+
+	ctrl.is_loading = true;
+	ctrl.is_login = false;
 
 	ctrl.currentState = {};
 
-	// retrieve the ontology from the endpoint
-	$http.get(url_endpoint_ontology)
-	.then(function(datas) {
-		ctrl.is_loading = false;
-		ctrl.currentState = OntologySelection.parseOntology(JSON.parse(datas.data.ontology));
+	// check if the user is login
+	GoogleAuth.isLogin()
+	.then(function(result) {
+		ctrl.is_login = result;
+
+		// retrieve the ontology from the endpoint
+		$http.get(url_endpoint_ontology)
+		.then(function(datas) {
+			ctrl.is_loading = false;
+			ctrl.currentState = OntologySelection.parseOntology(JSON.parse(datas.data.ontology));
+		}, function(error) {
+			console.error(error);
+		});
 	}, function(error) {
 		console.error(error);
 	});

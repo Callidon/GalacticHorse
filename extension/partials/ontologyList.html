@@ -1,20 +1,22 @@
-<h2>Tags</h2>
+<div ng-show="ontlgCtrl.is_login">
+	<h2>Tags</h2>
 
-<p ng-show="ontlgCtrl.is_loading">
-	<i class="fa fa-lg fa-spinner fa-pulse"></i> Chargement des tags
-</p>
+	<p ng-show="ontlgCtrl.is_loading">
+		<i class="fa fa-lg fa-spinner fa-pulse"></i> Chargement des tags
+	</p>
 
-<ul class="fa-ul" ng-hide="ontlgCtrl.is_loading">
-	<li ng-repeat="category in ontlgCtrl.currentState">
-		<i class="fa-li fa fa-shield fa-rotate-270"></i>
-		{{ category.name }}
-		<ul class="fa-ul">
-			<li ng-repeat="element in category.elements">
-				<i class="fa-li fa fa-square" ng-hide="ontlgCtrl.isSelected(element)"></i>
-				<i class="fa-li fa fa-check-square" ng-show="ontlgCtrl.isSelected(element)"></i>
-				{{ element["@id"] }}
-				<a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Ajouter</a>
-			</li>
-		</ul>
-	</li>
-</ul>
+	<ul class="fa-ul" ng-hide="ontlgCtrl.is_loading">
+		<li ng-repeat="category in ontlgCtrl.currentState">
+			<i class="fa-li fa fa-shield fa-rotate-270"></i>
+			{{ category.name }}
+			<ul class="fa-ul">
+				<li ng-repeat="element in category.elements">
+					<i class="fa-li fa fa-square" ng-hide="ontlgCtrl.isSelected(element)"></i>
+					<i class="fa-li fa fa-check-square" ng-show="ontlgCtrl.isSelected(element)"></i>
+					{{ element["@id"] }}
+					<a ng-hide="ontlgCtrl.isSelected(element)" href="" ng-click="ontlgCtrl.add(element)">Ajouter</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</div>

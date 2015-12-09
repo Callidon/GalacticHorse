@@ -5,11 +5,13 @@
 * A controller who handle the form in the extension
 */
 angular.module("GalacticHorseChrome.controllers")
-.controller("FormController", [ "OntologySelection", "$http", function(OntologySelection, $http) {
+.controller("FormController", [ "OntologySelection", "$http", "GoogleAuth", "$scope", function(OntologySelection, $http, GoogleAuth, $scope) {
     var ctrl = this;
 	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel";
 
-    ctrl.new_url = "";
+	ctrl.is_login = false;
+
+	ctrl.new_url = "";
     // various flags for the saveResource operation
     ctrl.FLAG_processing = false;
     ctrl.FLAG_success = false;
@@ -17,9 +19,17 @@ angular.module("GalacticHorseChrome.controllers")
 
     ctrl.ontologyElts = OntologySelection.selection;
 
-	// get the url of the active tab
-	chrome.tabs.query({ active : true, lastFocusedWindow : true}, function(tabs) {
-		ctrl.new_url = tabs[0].url;
+	// check if the user is login
+	GoogleAuth.isLogin()
+	.then(function(result) {
+		ctrl.is_login = result;
+
+		// get the url of the active tab
+		chrome.tabs.query({ active : true, lastFocusedWindow : true}, function(tabs) {
+			ctrl.new_url = tabs[0].url;
+		});
+	}, function(error) {
+		console.error(error);
 	});
 
     /*
@@ -37,9 +47,6 @@ angular.module("GalacticHorseChrome.controllers")
             "model" : JSON.stringify(exported_selection),
 			"urls" : []
         };
-
-		console.log(datas);
-
 
         // raise a flag to signal that the extension is processing the datas
         ctrl.FLAG_processing = true;

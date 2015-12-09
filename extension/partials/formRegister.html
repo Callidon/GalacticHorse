@@ -1,38 +1,40 @@
-<!-- Insertion form -->
-<form class="form-horizontal" ng-submit="formCtrl.saveResource()">
-	<legend>Ajouter un nouveau site</legend>
+<div ng-show="formCtrl.is_login">
+	<!-- Insertion form -->
+	<form class="form-horizontal" ng-submit="formCtrl.saveResource()">
+		<legend>Ajouter un nouveau site</legend>
 
-	<!-- Alert boxes -->
-	<div class="alert alert-dismissible alert-success" ng-show="formCtrl.FLAG_success">
-		<button type="button" class="close" ng-click="formCtrl.FLAG_success = false">x</button>
-		<p>
-			Insertion effectuée avec succès
-		</p>
-	</div>
-	<div class="alert alert-dismissible alert-danger" ng-show="formCtrl.FLAG_error">
-		<button type="button" class="close" ng-click="formCtrl.FLAG_error = false">x</button>
-		<p>
-			Une erreur s'est produite lors de l'insertion, l'opération n'a pu être menée à bien.
-		</p>
-	</div>
+		<!-- Alert boxes -->
+		<div class="alert alert-dismissible alert-success" ng-show="formCtrl.FLAG_success">
+			<button type="button" class="close" ng-click="formCtrl.FLAG_success = false">x</button>
+			<p>
+				Insertion effectuée avec succès
+			</p>
+		</div>
+		<div class="alert alert-dismissible alert-danger" ng-show="formCtrl.FLAG_error">
+			<button type="button" class="close" ng-click="formCtrl.FLAG_error = false">x</button>
+			<p>
+				Une erreur s'est produite lors de l'insertion, l'opération n'a pu être menée à bien.
+			</p>
+		</div>
 
-	<div class="form-group">
-		<label for="url">URL du site : </label>
-		<input class="form-control" type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_url" required>
-	</div>
+		<div class="form-group">
+			<label for="url">URL du site : </label>
+			<input class="form-control" type="text" name="url" placeholder="http://www.example.org/" ng-model="formCtrl.new_url" required>
+		</div>
 
-	<input type="submit" class="btn btn-warning" value="Enregistrer" ng-disabled="formCtrl.FLAG_processing">
-</form>
+		<input type="submit" class="btn btn-warning" value="Enregistrer" ng-disabled="formCtrl.FLAG_processing">
+	</form>
 
-<!-- Ontology selection -->
-<h3>Tags sélectionnés : </h3>
-<ul class="fa-ul" ng-show="formCtrl.ontologyElts[0]">
-	<li ng-repeat="element in formCtrl.ontologyElts">
-		<i class="fa-li fa fa-plus-square"></i>
-		{{ element["@id"] }}
-		<a href="" ng-click="formCtrl.remove(element)">Supprimer</a>
-	</li>
-</ul>
-<p ng-hide="formCtrl.ontologyElts[0]">
-	Aucun tag sélectionné
-</p>
+	<!-- Ontology selection -->
+	<h3>Tags sélectionnés : </h3>
+	<ul class="fa-ul" ng-show="formCtrl.ontologyElts[0]">
+		<li ng-repeat="element in formCtrl.ontologyElts">
+			<i class="fa-li fa fa-plus-square"></i>
+			{{ element["@id"] }}
+			<a href="" ng-click="formCtrl.remove(element)">Supprimer</a>
+		</li>
+	</ul>
+	<p ng-hide="formCtrl.ontologyElts[0]">
+		Aucun tag sélectionné
+	</p>
+</div>
