@@ -38,7 +38,6 @@ angular.module("GalacticHorseChrome.controllers")
 			"urls" : []
         };
 
-		console.log(datas);
 
 
         // raise a flag to signal that the extension is processing the datas
