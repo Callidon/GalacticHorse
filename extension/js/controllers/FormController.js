@@ -48,11 +48,6 @@ angular.module("GalacticHorseChrome.controllers")
 			"urls" : []
         };
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 62f6eceefcf4e15542ce591731c6a9f3de400b78
         // raise a flag to signal that the extension is processing the datas
         ctrl.FLAG_processing = true;
         // saving the resource on the app engine
