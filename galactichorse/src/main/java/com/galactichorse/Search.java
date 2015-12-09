@@ -6,6 +6,7 @@ import com.galactichorse.beans.ResponseBean;
 import com.google.api.server.spi.config.*;
 import com.google.api.server.spi.response.ForbiddenException;
 import com.google.appengine.api.datastore.*;
+import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.api.users.User;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.rdf.model.InfModel;
@@ -18,24 +19,22 @@ import org.apache.jena.riot.Lang;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  *
  */
 @Api(name = "search",
-     scopes = {Constants.EMAIL_SCOPE},
-     clientIds = {Constants.WEB_CLIENT_ID, Constants.EXTENSIO_CLIENT_ID},
-     audiences = {Constants.ANDROID_AUDIENCE})
+        scopes = {Constants.EMAIL_SCOPE},
+        clientIds = {Constants.WEB_CLIENT_ID, Constants.EXTENSION_CLIENT_ID},
+        audiences = {Constants.ANDROID_AUDIENCE})
 public class Search {
     private static final String ONTOLOGY_PATH = "WEB-INF/reduced-ontology.ttl";
     private static final Lang ONTOLOGY_LANGUAGE = Lang.TURTLE;
     private static final Lang MODEL_LANGUAGE = Lang.JSONLD;
     private static final String ENTITY_KIND_URL_MODEL = "url_model";
     private static final String ENTITY_PROPERTY_MODEL = "model";
+    private static final String ENTITY_PROPERTY_HOST = "host";
 
     /**
      * @return
@@ -63,8 +62,8 @@ public class Search {
      */
     @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
     public ResponseBean putUrlModel(RequestBean urlModel, User user) throws Exception {
-        if(user == null)
-            throw new ForbiddenException("user not logged in");
+        if (user == null)
+            throw new OAuthRequestException("user not logged in");
 
         ResponseBean response = new ResponseBean();
         URL url = new URL(urlModel.getUrl());
@@ -72,20 +71,16 @@ public class Search {
         Model ontology = getOntologyModel();
         Model model = ModelFactory.createDefaultModel();
         model.read(new ByteArrayInputStream(urlModel.getModel().getBytes()), null, MODEL_LANGUAGE.getLabel());
-        /*Reasoner reasoner = ReasonerRegistry.getOWLReasoner();
-        reasoner = reasoner.bindSchema(ontology);
-        InfModel infmodel = ModelFactory.createInfModel(reasoner, model);
-        ValidityReport validityReport = infmodel.validate();
-        if (!validityReport.isValid()) {
+        if (!isValidModel(model))
             throw new Exception("invalid model");
-        }*/
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Entity entity = new Entity(ENTITY_KIND_URL_MODEL, url.toString());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        /*inf*/
+
         model.write(baos, MODEL_LANGUAGE.getLabel());
         entity.setProperty(ENTITY_PROPERTY_MODEL, new Text(baos.toString()));
+        entity.setProperty(ENTITY_PROPERTY_HOST, url.getHost());
         datastore.put(entity);
 
         Map<String, LinkBean> links = new HashMap<String, LinkBean>();
@@ -123,6 +118,27 @@ public class Search {
     }
 
     /**
+     * @param hosts
+     * @return
+     */
+    public static Map<String, String> searchHosts(Set<String> hosts) {
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Map<String, String> hostModels = new HashMap<String, String>();
+
+        Query.Filter filter =
+                new Query.FilterPredicate(ENTITY_PROPERTY_HOST,
+                        Query.FilterOperator.IN,
+                        hosts);
+        Query query = new Query(ENTITY_KIND_URL_MODEL).setFilter(filter);
+        PreparedQuery preparedQuery = datastore.prepare(query);
+        for (Entity result : preparedQuery.asIterable()) {
+            hostModels.put((String) result.getProperty(ENTITY_PROPERTY_HOST), ((Text) (result.getProperty(ENTITY_PROPERTY_MODEL))).getValue());
+        }
+
+        return hostModels;
+    }
+
+    /**
      * @return
      * @throws FileNotFoundException
      */
@@ -132,6 +148,14 @@ public class Search {
         OntModel model = ModelFactory.createOntologyModel();
         model.read(inputStream, null, ONTOLOGY_LANGUAGE.getLabel());
         return model;
+    }
+
+    /**
+     * @param model
+     * @return
+     */
+    public static boolean isValidModel(Model model) {
+        return true;
     }
 
     /**
