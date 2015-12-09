@@ -8,6 +8,7 @@ import java.util.Map;
 public class ResponseBean {
     private String ontology;
     private Map<String, String> urlModels;
+    private Map<String, String> hostModels;
     private Map<String, LinkBean> _links;
 
     public ResponseBean() {
@@ -26,6 +27,14 @@ public class ResponseBean {
     }
 
     public void setUrlModels(Map<String, String> urlModels) {
+        this.urlModels = urlModels;
+    }
+
+    public Map<String, String> getHostModels() {
+        return urlModels;
+    }
+
+    public void setHostModels(Map<String, String> urlModels) {
         this.urlModels = urlModels;
     }
 
