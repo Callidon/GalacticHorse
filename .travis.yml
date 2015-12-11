@@ -11,8 +11,8 @@ script:
 before_deploy:
   - mv $TRAVIS_BUILD_DIR/extension $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension
   - mv $TRAVIS_BUILD_DIR/galactichorse $TRAVIS_BUILD_DIR/GalacticHorse-appengine
-  - zip -r $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension.zip $TRAVIS_BUILD_DIR/GalacticHorse-chrome-extension
-  - zip -r $TRAVIS_BUILD_DIR/GalacticHorse-appengine.zip $TRAVIS_BUILD_DIR/GalacticHorse-appengine
+  - cd $TRAVIS_BUILD_DIR && zip -r GalacticHorse-chrome-extension.zip GalacticHorse-chrome-extension
+  - cd $TRAVIS_BUILD_DIR && zip -r GalacticHorse-appengine.zip GalacticHorse-appengine
 deploy:
   provider: releases
   skip_cleanup: true
