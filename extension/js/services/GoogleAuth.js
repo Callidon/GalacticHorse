@@ -49,7 +49,7 @@ angular.module("GalacticHorseChrome.services")
 				deferred.reject(chrome.runtime.lastError.message);
 			} else {
 				// set the http header & store the token
-				$http.defaults.headers.common["X-Acces-Token"] = token || "";
+				$http.defaults.headers.common["Authorization"] = "Bearer " + token || "";
 
 				chrome.storage.local.set({ "gh_token" : token }, function() {
 					srv.isLogin = true;
@@ -73,7 +73,7 @@ angular.module("GalacticHorseChrome.services")
 					// delete the token from the storage & the HTTP headers
 					chrome.storage.local.remove("gh_token", function() {
 						srv.isLogin = false;
-						$http.defaults.headers.common["X-Acces-Token"] = "";
+						$http.defaults.headers.common["Authorization"] = "";
 					});
 				}
 			});
