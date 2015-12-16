@@ -49,3 +49,8 @@ a {
 	margin: 0 auto;
 	width: 200px;
 }
+
+.modal-content {
+  background-color: #66728a !important ;
+  color: white;
+}
