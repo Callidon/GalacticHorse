@@ -39,7 +39,7 @@ public class Search {
      * @return
      * @throws IOException
      */
-    @ApiMethod(name = "ontology", path="ontology", httpMethod = ApiMethod.HttpMethod.GET)
+    @ApiMethod(name = "ontology", path = "ontology", httpMethod = ApiMethod.HttpMethod.GET)
     public ResponseBean getOntology() throws IOException {
         ResponseBean response = new ResponseBean();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -60,7 +60,7 @@ public class Search {
      * @return
      * @throws Exception
      */
-    @ApiMethod(name = "insert", path="insert", httpMethod = ApiMethod.HttpMethod.POST)
+    @ApiMethod(name = "insert", path = "insert", httpMethod = ApiMethod.HttpMethod.POST)
     public ResponseBean putUrlModel(RequestBean urlModel, User user) throws Exception {
         if (user == null)
             throw new OAuthRequestException("user not logged in");
@@ -96,7 +96,7 @@ public class Search {
      * @param urls
      * @return
      */
-    @ApiMethod(name = "find", path="find", httpMethod = ApiMethod.HttpMethod.POST)
+    @ApiMethod(name = "find", path = "find", httpMethod = ApiMethod.HttpMethod.POST)
     public ResponseBean searchUrls(RequestBean urls) {
         ResponseBean response = new ResponseBean();
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
