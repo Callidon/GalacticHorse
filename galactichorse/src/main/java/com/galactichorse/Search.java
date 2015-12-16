@@ -39,7 +39,7 @@ public class Search {
      * @return
      * @throws IOException
      */
-    @ApiMethod(name = "ontology", httpMethod = ApiMethod.HttpMethod.GET)
+    @ApiMethod(name = "ontology", path="ontology", httpMethod = ApiMethod.HttpMethod.GET)
     public ResponseBean getOntology() throws IOException {
         ResponseBean response = new ResponseBean();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -48,7 +48,8 @@ public class Search {
 
         Map<String, LinkBean> links = new HashMap<String, LinkBean>();
         links.put("self", getOntologyLink());
-        links.put("nexts", getPutLink());
+        links.put("insert", getInsertLink());
+        links.put("find", getFindLink());
         response.set_links(links);
 
         return response;
@@ -59,7 +60,7 @@ public class Search {
      * @return
      * @throws Exception
      */
-    @ApiMethod(name = "put", httpMethod = ApiMethod.HttpMethod.POST)
+    @ApiMethod(name = "insert", path="insert", httpMethod = ApiMethod.HttpMethod.POST)
     public ResponseBean putUrlModel(RequestBean urlModel, User user) throws Exception {
         if (user == null)
             throw new OAuthRequestException("user not logged in");
@@ -83,8 +84,9 @@ public class Search {
         datastore.put(entity);
 
         Map<String, LinkBean> links = new HashMap<String, LinkBean>();
-        links.put("self", getPutLink());
-        links.put("next", getSearchLink());
+        links.put("self", getInsertLink());
+        links.put("find", getFindLink());
+        links.put("ontology", getOntologyLink());
         response.set_links(links);
 
         return response;
@@ -94,7 +96,7 @@ public class Search {
      * @param urls
      * @return
      */
-    @ApiMethod(name = "get", httpMethod = ApiMethod.HttpMethod.POST)
+    @ApiMethod(name = "find", path="find", httpMethod = ApiMethod.HttpMethod.POST)
     public ResponseBean searchUrls(RequestBean urls) {
         ResponseBean response = new ResponseBean();
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -109,8 +111,9 @@ public class Search {
         response.setUrlModels(urlModels);
 
         Map<String, LinkBean> links = new HashMap<String, LinkBean>();
-        links.put("self", getSearchLink());
-        links.put("next", getOntologyLink());
+        links.put("self", getFindLink());
+        links.put("insert", getInsertLink());
+        links.put("ontology", getOntologyLink());
         response.set_links(links);
 
         return response;
@@ -179,18 +182,18 @@ public class Search {
     /**
      * @return
      */
-    public static LinkBean getPutLink() {
+    public static LinkBean getInsertLink() {
         LinkBean link = new LinkBean();
-        link.setHref("/put");
+        link.setHref("/insert");
         return link;
     }
 
     /**
      * @return
      */
-    public static LinkBean getSearchLink() {
+    public static LinkBean getFindLink() {
         LinkBean link = new LinkBean();
-        link.setHref("/get");
+        link.setHref("/find");
         return link;
     }
 }
