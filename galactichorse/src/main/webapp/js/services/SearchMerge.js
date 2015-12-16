@@ -7,7 +7,7 @@
 angular.module('GalacticHorseSearch.services')
 .service('SearchMerge',[ "$http", "$q", function($http, $q){
     var srv = this;
-    var search_endpoint_url = "https://galactic-horse.appspot.com/_ah/api/search/v1/searchUrls";
+    var search_endpoint_url = "https://galactic-horse.appspot.com/_ah/api/search/v1/find";
 	// flag who signal if no results were found in the datastore
 	var FOUND_FLAG = false;
 

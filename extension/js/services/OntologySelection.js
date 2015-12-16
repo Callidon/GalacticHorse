@@ -7,7 +7,6 @@
 angular.module("GalacticHorseChrome.services")
 .service("OntologySelection", [ "$http", function($http) {
     var srv = this;
-	var ontology_endpoint = "https://galactic-horse.appspot.com/_ah/api/ontology/v1/ontologybean";
 
 	// list of the instance to add
 	var instances = {
@@ -56,7 +55,8 @@ angular.module("GalacticHorseChrome.services")
         var index = srv.selection.indexOf(element);
         // if the element is not already in the selection
         if(index == -1) {
-			instances["nao:hasTag"].push(element["@id"]);
+			var elt = { "@id" : element["@id"] };
+			instances["nao:hasTag"].push(elt);
             srv.selection.push(element);
         }
     }
@@ -68,7 +68,8 @@ angular.module("GalacticHorseChrome.services")
         var index_selection = srv.selection.indexOf(element);
         // if the element is in the selection
         if(index_selection > -1) {
-			var index_instances = instances["nao:hasTag"].indexOf(element["@id"]);
+			var elt = { "@id" : element["@id"] };
+			var index_instances = srv.selection.indexOf(element);
 			instances["nao:hasTag"].splice(index_instances, 1);
             srv.selection.splice(index_selection, 1);
         }

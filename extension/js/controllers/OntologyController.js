@@ -7,7 +7,7 @@
 angular.module("GalacticHorseChrome.controllers")
 .controller("OntologyController", [ "OntologySelection", "GoogleAuth", "$http", function(OntologySelection, GoogleAuth, $http) {
     var ctrl = this;
-	var url_endpoint_ontology = "https://galactic-horse.appspot.com/_ah/api/search/v1/responsebean";
+	var url_endpoint_ontology = "https://galactic-horse.appspot.com/_ah/api/search/v1/ontology";
 
 	ctrl.is_loading = true;
 	ctrl.is_login = false;

@@ -7,7 +7,7 @@
 angular.module("GalacticHorseChrome.controllers")
 .controller("FormController", [ "OntologySelection", "$http", "GoogleAuth", "$scope", function(OntologySelection, $http, GoogleAuth, $scope) {
     var ctrl = this;
-	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/putUrlModel";
+	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/insert";
 
 	ctrl.is_login = false;
 
