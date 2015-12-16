@@ -3,18 +3,15 @@ package com.galactichorse;
 import com.galactichorse.beans.LinkBean;
 import com.galactichorse.beans.RequestBean;
 import com.galactichorse.beans.ResponseBean;
-import com.google.api.server.spi.config.*;
-import com.google.api.server.spi.response.ForbiddenException;
+import com.google.api.server.spi.config.Api;
+import com.google.api.server.spi.config.ApiMethod;
 import com.google.appengine.api.datastore.*;
 import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.api.users.User;
 import com.hp.hpl.jena.ontology.OntModel;
-import com.hp.hpl.jena.rdf.model.InfModel;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
-import com.hp.hpl.jena.reasoner.Reasoner;
-import com.hp.hpl.jena.reasoner.ReasonerRegistry;
-import com.hp.hpl.jena.reasoner.ValidityReport;
+import com.hp.hpl.jena.rdf.model.Statement;
 import org.apache.jena.riot.Lang;
 
 import java.io.*;
@@ -35,6 +32,8 @@ public class Search {
     private static final String ENTITY_KIND_URL_MODEL = "url_model";
     private static final String ENTITY_PROPERTY_MODEL = "model";
     private static final String ENTITY_PROPERTY_HOST = "host";
+
+    private static OntModel ontology__;
 
     /**
      * @return
@@ -143,18 +142,28 @@ public class Search {
      * @throws FileNotFoundException
      */
     public static OntModel getOntologyModel() throws FileNotFoundException {
-        File file = new File(ONTOLOGY_PATH);
-        InputStream inputStream = new FileInputStream(file);
-        OntModel model = ModelFactory.createOntologyModel();
-        model.read(inputStream, null, ONTOLOGY_LANGUAGE.getLabel());
-        return model;
+        if (ontology__ == null) {
+            File file = new File(ONTOLOGY_PATH);
+            InputStream inputStream = new FileInputStream(file);
+            OntModel model = ModelFactory.createOntologyModel();
+            model.read(inputStream, null, ONTOLOGY_LANGUAGE.getLabel());
+            ontology__ = model;
+        }
+
+        return ontology__;
     }
 
     /**
      * @param model
      * @return
      */
-    public static boolean isValidModel(Model model) {
+    public static boolean isValidModel(Model model) throws FileNotFoundException {
+        for (Statement stmt : model.listStatements().toList()) {
+            if (!stmt.getPredicate().toString().equals("http://www.semanticdesktop.org/ontologies/2007/08/15/nao/#hasTag") ||
+                    !getOntologyModel().containsResource(stmt.getObject()))
+                return false;
+        }
+
         return true;
     }
 
