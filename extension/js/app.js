@@ -56,7 +56,6 @@ angular.module("GalacticHorseChrome",
 			if(result) {
 				GoogleAuth.retrieveToken()
 				.then(function(token) {
-					console.log(token);
 					$http.defaults.headers.common["X-Acces-Token"] = token || "";
 				}, function(error) {
 					console.error(error);
