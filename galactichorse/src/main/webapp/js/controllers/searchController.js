@@ -32,7 +32,6 @@ angular.module('GalacticHorseSearch.controllers')
 			SearchMerge.getMergedDatas(datas.data)
 			.then(function(data){
 				ctrl.is_loading = false;
-				console.log(data);
 				ctrl.details = data;
 			}, function(error){
 				ctrl.is_loading = false;

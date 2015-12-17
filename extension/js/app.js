@@ -8,7 +8,7 @@ angular.module("GalacticHorseChrome",
 		"pascalprecht.translate"
 	])
 	.config(["$translateProvider", function($translateProvider) {
-
+		// setup the translations
 		$translateProvider.translations("en", {
 			"access:ParkingType" : "Parking type",
 			"access:BlueBadge" : "Blue badge",
@@ -49,7 +49,7 @@ angular.module("GalacticHorseChrome",
 
 		$translateProvider.preferredLanguage("en");
 	}])
-	.run(["GoogleAuth", "$http", "$translate", function(GoogleAuth, $http, $translate) {
+	.run(["GoogleAuth", "$http", "$translate", "$window", function(GoogleAuth, $http, $translate, $window) {
 		// if the user is connected, set his token in the HTPP header fields
 		GoogleAuth.isLogin()
 		.then(function(result) {
@@ -65,6 +65,12 @@ angular.module("GalacticHorseChrome",
 			console.error(error);
 		});
 
-		// set the default language
-		$translate.use("fr");
+		// detect & setup the language
+		var lang = $window.navigator.language || $window.navigator.userLanguage;
+		if(lang == "fr") {
+			$translate.use("fr");
+		} else {
+			$translate.use("en");
+		}
+
 	}]);

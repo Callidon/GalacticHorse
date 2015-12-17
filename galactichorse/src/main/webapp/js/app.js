@@ -6,7 +6,7 @@ angular.module("GalacticHorseSearch", [
 	"pascalprecht.translate"
 ])
 .config(["$translateProvider", function($translateProvider) {
-
+	// setup the translations
 	$translateProvider.translations("en", {
 		"access:ParkingType" : "Parking type",
 		"access:BlueBadge" : "Blue badge",
@@ -47,8 +47,12 @@ angular.module("GalacticHorseSearch", [
 
 	$translateProvider.preferredLanguage("en");
 }])
-.run(["$translate", function($translate) {
-
-	// set the default language
-	$translate.use("fr");
+.run(["$translate", "$window", function($translate, $window) {
+	// detect & setup the language
+	var lang = $window.navigator.language || $window.navigator.userLanguage;
+	if(lang == "fr") {
+		$translate.use("fr");
+	} else {
+		$translate.use("en");
+	}
 }]);
