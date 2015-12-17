@@ -56,7 +56,7 @@ angular.module("GalacticHorseChrome",
 			if(result) {
 				GoogleAuth.retrieveToken()
 				.then(function(token) {
-					$http.defaults.headers.common["Authorization"] = "Bearer " + token || "";
+					$http.defaults.headers.common.Authorization = "Bearer " + token || "";
 				}, function(error) {
 					console.error(error);
 				});
