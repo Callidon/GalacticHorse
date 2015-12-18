@@ -10,6 +10,13 @@ Il se décompose en deux applications :
 
 Pour installer l'extension, télécharger-là dans la section [releases](https://github.com/Callidon/GalacticHorse/releases) de ce dépôt Github et extrayez l'archive zip dans un dossier. Puis, rendez-vous dans le menu **Extensions** de Google Chrome, puis cochez la case **Mode développeur**. Ensuite, cliquez sur **Charger l'extension non empaquetée** et sélectionnez le dossier que vous venez d'extraire depuis l'archive. Félicitations, l'extension **Galactic Horse** est maintenant installée !
 
+ #Exemple de recherches taggées
+
+Les recherches suivantes contiennent des résultats ayant été taggés au moyen de l'extension. Libre à vous de les essayer pour tester l'application :
+* Nantes
+* Chateau des ducs de bretagne
+* Université de Nantes
+
 #Utilisation avancée
 
 Ce projet est open source. Le tutoriel suivant vous explique comment déployer votre propre version de Galactic Horse sur un serveur [Google App Engine](https://cloud.google.com/appengine/docs).
@@ -64,4 +71,4 @@ Vous devriez obtenir un fichier *pom.xml* avec un contenu similaire au suivant :
 
 Pour déployez l'application, il vous suffit de naviguez dans le dossier *galactichorse* et d'exécuter la commande `mvn appengine:update`. Il vous sera demandé de vous identifier avec votre compte Google, puis le déploiement de votre application s'effectuera de manière automatique.
 
-Ce projet a été développer dans le cadre de la matière **Programmation Web & Cloud** enseignée en [Master 1 ALMA](http://www.master-info.univ-nantes.fr/87871211/0/fiche___pagelibre/&RH=1403710895111) à [l'Université de Nantes](http://www.univ-nantes.fr/), en partenariat avec l'association [ThinkCode](http://www.thinkcode.co/).
+Ce projet a été développé dans le cadre de la matière **Programmation Web & Cloud** enseignée en [Master 1 ALMA](http://www.master-info.univ-nantes.fr/87871211/0/fiche___pagelibre/&RH=1403710895111) à [l'Université de Nantes](http://www.univ-nantes.fr/), en partenariat avec l'association [ThinkCode](http://www.thinkcode.co/).
