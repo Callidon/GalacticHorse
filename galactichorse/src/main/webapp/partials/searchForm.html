@@ -1,65 +1,65 @@
-﻿<div class="form-search">
+<div class="form-search">
 	<div class="input-group  search-input">
 		<input type="text" class="form-control" ng-model="searchCtrl.search" ng-change="searchCtrl.change()" placeholder="Enter search" autofocus />
 		<span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
 	</div>
 
-		<div class="search-navigation">
-			<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.previousPage();">Previous page</button>
-			<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.nextPage();">Next page</button>
-			<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal">A propos</button>
-			<!-- Modal -->
+	<div class="search-navigation">
+		<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.previousPage();">Previous page</button>
+		<button type="button" class="btn btn-sm btn-warning" ng-click="searchCtrl.nextPage();">Next page</button>
+		<button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#myModal">A propos</button>
+		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
-		<div class="modal-dialog">
-		
-		  <!-- Modal content-->
-		  <div class="modal-content">
-			<div class="modal-header">
-			  <button type="button" class="close" data-dismiss="modal">&times;</button>
-			  <h4 class="modal-title">A propos:</h4>
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">A propos:</h4>
+					</div>
+					<div class="modal-body">
+						<h1>GALACTIC HORSE</h1>
+
+						<p>Bienvenue sur Galactic Horse, le moteur de recherche enrichi dédie au Handicap!.</p>
+
+						<p>Sur ce site, vous pouvez effectuer des recherches comme sur n'importe quel moteur de recherche, mais vous avez des informations supplémentaires spécifique au handicap, ajouté par d'autres utilisateurs.
+							Ainsi, sous chaque champs de recherche, vous pouvez trouver des "tags", qui indique par exemple l’accessibilité d'un lieu, ou la présence d'un parking avec des places handicapés.</p>
+
+							<p>De plus vous pouvez également télécharger notre extension Galactic-Horse, afin de vous même taguer d'autres sites, et ainsi contribuer au développement de notre application.
+								Pour cela, rendez vous sur le site que vous souhaitez taguer, lancer l'extension, et ajouter les champs qui correspondent a ce site.
+								Par exemple, sur le site du restaurant "L’entrecôte", vous pouvez ajouter des champs comme "Accès facile", ou "Escalier", afin d'aider de futurs utilisateurs du site.
+								Pour plus d'information, ou pour nous faire un retour sur le fonctionnement du site, rendez vous sur le dépôt GitHub de notre application: <span style="text-decoration:underline;"> <a href="https://github.com/Callidon/GalacticHorse">Galactic Horse</a></p>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<span class="loading-text center-block" ng-show="searchCtrl.is_loading">
+					<i class="fa fa-lg fa-spinner fa-pulse"></i> Recherche en cours
+				</span>
+
+				<div class="row" ng-hide="searchCtrl.is_loading">
+
+					<div class="col-md-12" ng-repeat="item in searchCtrl.details.items track by $index">
+						<h4>
+							<a href="{{item.link}}">{{item.title}}</a>
+						</h4>
+						<p class="text-url">
+							{{item.displayLink}}
+						</p>
+						<p>
+							{{item.snippet}}
+						</p>
+						<span ng-repeat="t in item.model.hasTag">
+							<ontology-tag uri="{{t}}" label="{{t}}"></ontology-tag>
+						</span>
+
+					</div>
+				</div>
 			</div>
-			<div class="modal-body">
-				<h1>GALACTIC HORSE</h1>
-
-				<p>Bienvenue sur Galactic Horse, le moteur de recherche enrichi dédie au Handicap!.</p>
-
-				<p>Sur ce site, vous pouvez effectuer des recherches comme sur n'importe quel moteur de recherche, mais vous avez des informations supplémentaires spécifique au handicap, ajouté par d'autres utilisateurs.
-				Ainsi, sous chaque champs de recherche, vous pouvez trouver des "tags", qui indique par exemple l’accessibilité d'un lieu, ou la présence d'un parking avec des places handicapés.</p>
-
-				<p>De plus vous pouvez également télécharger notre extension Galactic-Horse, afin de vous même taguer d'autres sites, et ainsi contribuer au développement de notre application.
-				Pour cela, rendez vous sur le site que vous souhaitez taguer, lancer l'extension, et ajouter les champs qui correspondent a ce site.
-				Par exemple, sur le site du restaurant "L’entrecôte", vous pouvez ajouter des champs comme "Accès facile", ou "Escalier", afin d'aider de futurs utilisateurs du site.
-				Pour plus d'information, ou pour nous faire un retour sur le fonctionnement du site, rendez vous sur le dépôt GitHub de notre application: <span style="text-decoration:underline;"> <a href="https://github.com/Callidon/GalacticHorse">Galactic Horse</a></p>
-			</div>
-			<div class="modal-footer">
-			  <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-			</div>
-		  </div>
-		  
-		</div>
-	  </div>
-		</div>
-
-	<span class="loading-text center-block" ng-show="searchCtrl.is_loading">
-		<i class="fa fa-lg fa-spinner fa-pulse"></i> Recherche en cours
-	</span>
-
-	<div class="row" ng-hide="searchCtrl.is_loading">
-
-		<div class="col-md-12" ng-repeat="item in searchCtrl.details.items track by $index">
-			<h4>
-				<a href="{{item.link}}">{{item.title}}</a>
-			</h4>
-			<p class="text-url">
-				{{item.displayLink}}
-			</p>
-			<p>
-				{{item.snippet}}
-			</p>
-			<span ng-repeat="t in item.model.hasTag">
-				<ontology-tag uri="{{t}}" label="{{t}}"></ontology-tag>
-			</span>
-
-		</div>
-	</div>
-</div>
