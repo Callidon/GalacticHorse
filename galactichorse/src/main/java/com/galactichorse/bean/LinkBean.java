@@ -1,4 +1,4 @@
-package com.galactichorse.beans;
+package com.galactichorse.bean;
 
 /**
  * http://stateless.co/hal_specification.html

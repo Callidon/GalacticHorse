@@ -1,8 +1,8 @@
 package com.galactichorse;
 
-import com.galactichorse.beans.LinkBean;
-import com.galactichorse.beans.RequestBean;
-import com.galactichorse.beans.ResponseBean;
+import com.galactichorse.bean.LinkBean;
+import com.galactichorse.bean.RequestBean;
+import com.galactichorse.bean.ResponseBean;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.appengine.api.datastore.*;
@@ -19,7 +19,9 @@ import java.net.URL;
 import java.util.*;
 
 /**
- *
+ * @author Pierre Gaultier
+ * @author Alexis Giraudet
+ * @author Thomas Minier
  */
 @Api(name = "search",
         scopes = {Constants.EMAIL_SCOPE},
@@ -36,11 +38,11 @@ public class Search {
     private static OntModel ontology__;
 
     /**
-     * @return
+     * @return object containing the JSON-LD formatted ontology (field ontology)
      * @throws IOException
      */
     @ApiMethod(name = "ontology", path = "ontology", httpMethod = ApiMethod.HttpMethod.GET)
-    public ResponseBean getOntology() throws IOException {
+    public ResponseBean ontology() throws IOException {
         ResponseBean response = new ResponseBean();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         getOntologyModel().write(baos, MODEL_LANGUAGE.getLabel());
@@ -56,12 +58,12 @@ public class Search {
     }
 
     /**
-     * @param urlModel
-     * @return
+     * @param urlModel object containing the url and associated model to insert in the datastore (fields url and model)
+     * @return object containing links relation (field _links)
      * @throws Exception
      */
     @ApiMethod(name = "insert", path = "insert", httpMethod = ApiMethod.HttpMethod.POST)
-    public ResponseBean putUrlModel(RequestBean urlModel, User user) throws Exception {
+    public ResponseBean insertUrlModel(RequestBean urlModel, User user) throws Exception {
         if (user == null)
             throw new OAuthRequestException("user not logged in");
 
@@ -93,11 +95,11 @@ public class Search {
     }
 
     /**
-     * @param urls
-     * @return
+     * @param urls object containing urls to find in the datastore (field urls)
+     * @return object containing matching urls and associated models (field urlModels)
      */
     @ApiMethod(name = "find", path = "find", httpMethod = ApiMethod.HttpMethod.POST)
-    public ResponseBean searchUrls(RequestBean urls) {
+    public ResponseBean findUrls(RequestBean urls) {
         ResponseBean response = new ResponseBean();
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Collection<Key> keys = new ArrayList<Key>();
@@ -120,10 +122,10 @@ public class Search {
     }
 
     /**
-     * @param hosts
-     * @return
+     * @param hosts a set of hosts to find in the datastore
+     * @return a map containing urls matching with hosts and their corresponding models
      */
-    public static Map<String, String> searchHosts(Set<String> hosts) {
+    public static Map<String, String> findHosts(Set<String> hosts) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Map<String, String> hostModels = new HashMap<String, String>();
 
@@ -141,7 +143,7 @@ public class Search {
     }
 
     /**
-     * @return
+     * @return instance of the ontology model
      * @throws FileNotFoundException
      */
     public static OntModel getOntologyModel() throws FileNotFoundException {
@@ -157,8 +159,8 @@ public class Search {
     }
 
     /**
-     * @param model
-     * @return
+     * @param model the model to validate
+     * @return true if the model is valid else false
      */
     public static boolean isValidModel(Model model) throws FileNotFoundException {
         for (Statement stmt : model.listStatements().toList()) {
@@ -171,7 +173,7 @@ public class Search {
     }
 
     /**
-     * @return
+     * @return a link to the ontology method
      */
     public static LinkBean getOntologyLink() {
         LinkBean link = new LinkBean();
@@ -180,7 +182,7 @@ public class Search {
     }
 
     /**
-     * @return
+     * @return a link to the insert method
      */
     public static LinkBean getInsertLink() {
         LinkBean link = new LinkBean();
@@ -189,7 +191,7 @@ public class Search {
     }
 
     /**
-     * @return
+     * @return a link to the find method
      */
     public static LinkBean getFindLink() {
         LinkBean link = new LinkBean();
