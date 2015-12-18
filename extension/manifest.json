@@ -4,7 +4,7 @@
 	"name": "Galactic Horse",
 	"key" : "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9K9BhMLCfmPwOmPb4LVU6p1djKDFJGs29BPC3Fikeo9RyTthu5ZR79Qh6yg673kZuY44tUkL/Gv1x8+SAgDUrzEjNNWBHsZJ2YpZ0ws0ZHgoO033TJcpBaW9OcczrlC52dIHnIkTglJqlklhEdCFnSMuwd50mQv+J2M5D3gNwVheGXd8SgLfLSVNRB7yT2oVNKbNo8kXZes3vHNgzKZJvEspDcZv1ArB7f7S1cL0d7kHPEv1vV+uO3lfi60GnKdXoAJFEm81glv5JKw/71lNyMHqYozEGFc0oJRGat/1ekeR70r9JjDoy/MwQJQ/7qWKxefMy28yIzCWrKefYlgyLwIDAQAB",
 	"description": "Annoter le web via de puissantes annotations !",
-	"version": "0.9.0",
+	"version": "1.0.0",
 	"homepage_url" : "http://galactic-horse.appspot.com/",
 	"browser_action": {
 		"default_icon" : "img/logo.png",
