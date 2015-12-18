@@ -4,6 +4,7 @@
 * @name GalacticHorseSearch.controllers:SearchController
 * @description
 * A controller who handle the searchs made by the user
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
 */
 angular.module('GalacticHorseSearch.controllers')
 .controller('SearchController',["$http", 'CustomSearch',"SearchMerge", function($http,CustomSearch,SearchMerge){

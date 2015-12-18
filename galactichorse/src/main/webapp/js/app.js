@@ -1,4 +1,7 @@
-
+/*
+* Main module of the application
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
+*/
 angular.module("GalacticHorseSearch", [
 	"GalacticHorseSearch.controllers",
 	"GalacticHorseSearch.directives",

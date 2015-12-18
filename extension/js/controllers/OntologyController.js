@@ -3,10 +3,11 @@
 * @name GalacticHorseChrome.controllers:OntologyController
 * @description
 * A controller which handle the display of the ontology
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
 */
 angular.module("GalacticHorseChrome.controllers")
 .controller("OntologyController", [ "OntologySelection", "GoogleAuth", "$http", function(OntologySelection, GoogleAuth, $http) {
-    var ctrl = this;
+	var ctrl = this;
 	var url_endpoint_ontology = "https://galactic-horse.appspot.com/_ah/api/search/v1/ontology";
 
 	ctrl.is_loading = true;
@@ -32,16 +33,16 @@ angular.module("GalacticHorseChrome.controllers")
 	});
 
 	/*
-	 * Method which test if an element is in the selection
-	 */
+	* Method which test if an element is in the selection
+	*/
 	ctrl.isSelected = function(element) {
 		return OntologySelection.isSelected(element);
 	}
 
-    /*
-    * Method which add an ontology element to the selection
-    */
-    ctrl.add = function(element) {
-        OntologySelection.add(element);
-    }
+	/*
+	* Method which add an ontology element to the selection
+	*/
+	ctrl.add = function(element) {
+		OntologySelection.add(element);
+	}
 }]);

@@ -3,10 +3,11 @@
 * @name GalacticHorseChrome.controllers:AuthController
 * @description
 * A controller which handle the authentification using Google Account
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
 */
 angular.module("GalacticHorseChrome.controllers")
 .controller("AuthController", ["GoogleAuth",  function(GoogleAuth) {
-    var ctrl = this;
+	var ctrl = this;
 	ctrl.is_login = false;
 
 	GoogleAuth.isLogin()
@@ -17,8 +18,8 @@ angular.module("GalacticHorseChrome.controllers")
 	});
 
 	/*
-	 * Method which handle the authentification of the user
-	 */
+	* Method which handle the authentification of the user
+	*/
 	ctrl.login = function() {
 		GoogleAuth.login()
 		.then(function(result) {
@@ -29,8 +30,8 @@ angular.module("GalacticHorseChrome.controllers")
 	}
 
 	/*
-	 * Method which logout the user
-	 */
+	* Method which logout the user
+	*/
 	ctrl.logout = function() {
 		GoogleAuth.logout();
 		ctrl.is_login = false;

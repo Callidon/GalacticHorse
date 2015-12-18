@@ -1,4 +1,5 @@
 /*
- * Module who contains all the controllers
- */
+* Module who contains all the controllers
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
+*/
 angular.module("GalacticHorseChrome.controllers", []);

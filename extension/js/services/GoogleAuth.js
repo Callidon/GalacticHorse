@@ -3,14 +3,15 @@
 * @name GalacticHorseChrome.services:GoogleAuth
 * @description
 * A service which store the selected elements of an Ontology
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
 */
 angular.module("GalacticHorseChrome.services")
 .service("GoogleAuth", ["$q", "$http", function($q, $http) {
-    var srv = this;
+	var srv = this;
 
 	/*
-	 * Variable which indicate if an user is login or not
-	 */
+	* Variable which indicate if an user is login or not
+	*/
 	srv.isLogin = function() {
 		var deferred = $q.defer();
 		// refresh the state of the authentification
@@ -25,8 +26,8 @@ angular.module("GalacticHorseChrome.services")
 	}
 
 	/*
-	 * Method which retrieve the token from the storage
-	 */
+	* Method which retrieve the token from the storage
+	*/
 	srv.retrieveToken = function() {
 		var deferred = $q.defer();
 		chrome.storage.local.get("gh_token", function(items) {
@@ -40,8 +41,8 @@ angular.module("GalacticHorseChrome.services")
 	}
 
 	/*
-	 * Method which handle the authentification of the user
-	 */
+	* Method which handle the authentification of the user
+	*/
 	srv.login = function() {
 		var deferred = $q.defer();
 		chrome.identity.getAuthToken({ interactive : true }, function(token) {
@@ -60,8 +61,8 @@ angular.module("GalacticHorseChrome.services")
 	}
 
 	/*
-	 * Method which logout the user
-	 */
+	* Method which logout the user
+	*/
 	srv.logout = function() {
 		srv.retrieveToken()
 		.then(function(token) {

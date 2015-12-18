@@ -3,21 +3,22 @@
 * @name GalacticHorseChrome.controllers:FormController
 * @description
 * A controller which handle the form in the extension
+* authors : Alexis Giraudet, Pierre Gaultier, Thomas Minier
 */
 angular.module("GalacticHorseChrome.controllers")
 .controller("FormController", [ "OntologySelection", "$http", "GoogleAuth", "$scope", function(OntologySelection, $http, GoogleAuth, $scope) {
-    var ctrl = this;
+	var ctrl = this;
 	var url_endpoint_put = "https://galactic-horse.appspot.com/_ah/api/search/v1/insert";
 
 	ctrl.is_login = false;
 
 	ctrl.new_url = "";
-    // various flags for the saveResource operation
-    ctrl.FLAG_processing = false;
-    ctrl.FLAG_success = false;
-    ctrl.FLAG_error = false;
+	// various flags for the saveResource operation
+	ctrl.FLAG_processing = false;
+	ctrl.FLAG_success = false;
+	ctrl.FLAG_error = false;
 
-    ctrl.ontologyElts = OntologySelection.selection;
+	ctrl.ontologyElts = OntologySelection.selection;
 
 	// check if the user is login
 	GoogleAuth.isLogin()
@@ -32,39 +33,39 @@ angular.module("GalacticHorseChrome.controllers")
 		console.error(error);
 	});
 
-    /*
-    * Method which remove an ontology element from the selection
-    */
-    ctrl.remove = function(elt) {
-        OntologySelection.remove(elt);
-    }
+	/*
+	* Method which remove an ontology element from the selection
+	*/
+	ctrl.remove = function(elt) {
+		OntologySelection.remove(elt);
+	}
 
-    ctrl.saveResource = function() {
-        // correctly format the datas
-        var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
-        var datas = {
-            "url" : ctrl.new_url,
-            "model" : JSON.stringify(exported_selection),
+	ctrl.saveResource = function() {
+		// correctly format the datas
+		var exported_selection = OntologySelection.exportForUrl(ctrl.new_elt);
+		var datas = {
+			"url" : ctrl.new_url,
+			"model" : JSON.stringify(exported_selection),
 			"urls" : []
-        };
+		};
 
-        // raise a flag to signal that the extension is processing the datas
-        ctrl.FLAG_processing = true;
-        // saving the resource on the app engine
-        $http.post(url_endpoint_put, datas)
-            .then(function(datas) {
-                // updating the flags
-                ctrl.FLAG_processing = false;
-                ctrl.FLAG_success = true;
+		// raise a flag to signal that the extension is processing the datas
+		ctrl.FLAG_processing = true;
+		// saving the resource on the app engine
+		$http.post(url_endpoint_put, datas)
+		.then(function(datas) {
+			// updating the flags
+			ctrl.FLAG_processing = false;
+			ctrl.FLAG_success = true;
 
-                // resetting the form
-                ctrl.new_url = "";
-				OntologySelection.reset();
-            }, function(error) {
-                // updating the flags
-                ctrl.FLAG_processing = false;
-                ctrl.FLAG_error = true;
-                console.error(error);
-            });
-    }
+			// resetting the form
+			ctrl.new_url = "";
+			OntologySelection.reset();
+		}, function(error) {
+			// updating the flags
+			ctrl.FLAG_processing = false;
+			ctrl.FLAG_error = true;
+			console.error(error);
+		});
+	}
 }]);
