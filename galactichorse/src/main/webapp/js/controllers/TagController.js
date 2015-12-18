@@ -40,10 +40,10 @@ angular.module("GalacticHorseSearch.controllers")
 		ctrl.tag ="fa fa-signal";
 		break;
 		case "access:EasyAccess":
-		ctrl.tag ="fa fa-thumbs-o-down";
+		ctrl.tag ="fa fa-thumbs-o-up";
 		break;
 		case "access:DifficultAccess":
-		ctrl.tag ="fa fa-thumbs-o-up";
+		ctrl.tag ="fa fa-thumbs-o-down";
 		break;
 	}
 
