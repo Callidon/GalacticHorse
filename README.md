@@ -3,18 +3,18 @@
 Galactic Horse est un moteur de recherche enrichi dédié au handicap.
 
 Il se décompose en deux applications :
-* Une [extension Google Chrome](https://github.com/Callidon/GalacticHorse/releases) avec laquelle vous pouvez "annotez" des adresses avec des tags, anfin d'enrichir la page avec des informations liées au handicap. Par exemple, sur le site du restaurant "L’entrecôte", vous pouvez ajouter des champs comme "Accès facile" ou "Escalier", afin d'aider de futurs utilisateurs du site.
+* Une [extension Google Chrome](https://github.com/Callidon/GalacticHorse/releases) avec laquelle vous pouvez "annoter" des adresses avec des tags, afin d'enrichir la page avec des informations liées au handicap. Par exemple, sur le site du restaurant "L’entrecôte", vous pouvez ajouter des champs comme "Accès facile" ou "Escalier", afin d'aider de futurs utilisateurs du site.
 * Un [site web](https://galactic-horse.appspot.com/) qui vous permet d'effectuer des recherches Google classiques, mais enrichies avec les informations que des utilisateurs ont apporté dans notre base de données via l'extension.
 
 #Installation simple de l'extension
 
-Pour installer l'extension, télécharger-là dans la section [releases](https://github.com/Callidon/GalacticHorse/releases) de ce dépôt Github et extrayez l'archive zip dans un dossier. Puis, rendez-vous dans le menu **Extensions** de Google Chrome, puis cochez la case **Mode développeur**. Ensuite, cliquez sur **Charger l'extension non empaquetée** et sélectionnez le dossier que vous venez d'extraire depuis l'archive. Félicitations, l'extension **Galactic Horse** est maintenant installée !
+Pour installer l'extension, téléchargez-là dans la section [releases](https://github.com/Callidon/GalacticHorse/releases) de ce dépôt Github et extrayez l'archive zip dans un dossier. Puis, rendez-vous dans le menu **Extensions** de Google Chrome, puis cochez la case **Mode développeur**. Ensuite, cliquez sur **Charger l'extension non empaquetée** et sélectionnez le dossier que vous venez d'extraire depuis l'archive. Félicitations, l'extension **Galactic Horse** est maintenant installée !
 
  #Exemple de recherches taggées
 
 Les recherches suivantes contiennent des résultats ayant été taggés au moyen de l'extension. Libre à vous de les essayer pour tester l'application :
 * Nantes
-* Chateau des ducs de bretagne
+* Château des ducs de bretagne
 * Université de Nantes
 
 #Utilisation avancée
@@ -30,7 +30,7 @@ Les outils suivants sont nécessaires pour installer Galactic Horse. Merci de v�
 
 ##Installation
 
-Commncez par clonez le dépôt en utilisant **git**
+Commencez par cloner le dépôt en utilisant **git**
 ```bash
 git clone https://github.com/Callidon/GalacticHorse.git
 ```
@@ -52,7 +52,7 @@ Pour utiliser l'extension, rendez-vous dans le menu **Extensions** de Google Chr
 
 ##Déploiement
 
-Pour déployez l'application Google App Engine, suivez les étapes suivantes :
+Pour déployer l'application Google App Engine, suivez les étapes suivantes :
 * Rendez-vous dans la [console Google Développeur](https://console.developers.google.com/home/dashboard?project=galactic-horse) et créez un nouveau projet.
 * Notez l'id de votre projet. Par exemple : *my-project-123*.
 * Modifiez le fichier *pom.xml* situé dans le dossier *galactichorse* et remplacez la valeur dans la balise `<app.id>` par l'id de votre application.
@@ -69,6 +69,6 @@ Vous devriez obtenir un fichier *pom.xml* avec un contenu similaire au suivant :
 ...
 ```
 
-Pour déployez l'application, il vous suffit de naviguez dans le dossier *galactichorse* et d'exécuter la commande `mvn appengine:update`. Il vous sera demandé de vous identifier avec votre compte Google, puis le déploiement de votre application s'effectuera de manière automatique.
+Pour déployer l'application, il vous suffit de naviguer dans le dossier *galactichorse* et d'exécuter la commande `mvn appengine:update`. Il vous sera demandé de vous identifier avec votre compte Google, puis le déploiement de votre application s'effectuera de manière automatique.
 
 Ce projet a été développé dans le cadre de la matière **Programmation Web & Cloud** enseignée en [Master 1 ALMA](http://www.master-info.univ-nantes.fr/87871211/0/fiche___pagelibre/&RH=1403710895111) à [l'Université de Nantes](http://www.univ-nantes.fr/), en partenariat avec l'association [ThinkCode](http://www.thinkcode.co/).
